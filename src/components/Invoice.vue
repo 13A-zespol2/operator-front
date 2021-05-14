@@ -1,0 +1,298 @@
+<template>
+
+  <div class="main">
+    <my-header/>
+    <div class="container">
+      <div class="flexbox_horizontal">
+        <div class="payment_info">
+          <div class="payment_info_2col">
+            <div class="amount">
+              <p class="title">Invoice value</p>
+              <p class="bold_title">75.67$</p>
+            </div>
+
+            <div class="invoice_deadline">
+              <p class="title">Invoice deadline</p>
+              <p class="bold_title">6 days</p>
+            </div>
+          </div>
+          <a class="button_payment">Pay now with <img class="payment_logo" src="images/payu_logo.png"></a>
+        </div>
+
+        <div class="bank_info">
+          <p class="title">Bank transfer details</p>
+          <p class="default_text">CallingApp Inc.</p>
+          <p class="default_text">1921 Harvest Lane</p>
+          <p class="default_text">New York, NY 12210</p>
+          <p class="default_text">Account number: <b> 4157 8545 1223 6974</b></p>
+
+        </div>
+      </div>
+
+      <div class="flexbox_horizontal">
+        <div class="invoices">
+          <p class="bold_title">Paid invoices</p>
+          <p class="default_text">You don't have paid invoices yet 😕</p>
+        </div>
+      </div>
+
+
+      <div class="flexbox_horizontal">
+        <div class="invoices">
+          <div class="panel panel-default">
+            <div id="heading" class="panel-heading" role="tab">
+              <div class="panel-ico-title">
+                <h4 class="panel-title">FV/215123/04/2021</h4>
+                <i class="fas fa-chevron-up"></i>
+              </div>
+            </div>
+            <div id="collapse" aria-labelledby="heading<?php echo $c ?>" class="panel-collapse collapse"
+                 role="tabpanel">
+              <div class="panel-body">Here will be your invoice data 😉</div>
+            </div>
+          </div>
+
+
+          <div class="panel panel-default">
+            <div id="heading" class="panel-heading" role="tab">
+              <div class="panel-ico-title">
+                <h4 class="panel-title">FV/6786544/03/2021</h4>
+                <i class="fas fa-chevron-up"></i>
+              </div>
+            </div>
+            <div id="collapse" aria-labelledby="heading<?php echo $c ?>" class="panel-collapse collapse"
+                 role="tabpanel">
+              <div class="panel-body">Here will be your invoice data 😉</div>
+            </div>
+          </div>
+
+
+          <div class="panel panel-default">
+            <div id="heading" class="panel-heading" role="tab">
+              <div class="panel-ico-title">
+                <h4 class="panel-title">FV/221457/02/2021</h4>
+                <i class="fas fa-chevron-up"></i>
+              </div>
+            </div>
+            <div id="collapse" aria-labelledby="heading<?php echo $c ?>" class="panel-collapse collapse"
+                 role="tabpanel">
+              <div class="panel-body">Here will be your invoice data 😉</div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div id="heading" class="panel-heading" role="tab">
+              <div class="panel-ico-title">
+                <h4 class="panel-title">FV/7854614/01/2021</h4>
+                <i class="fas fa-chevron-up"></i>
+              </div>
+            </div>
+            <div id="collapse" aria-labelledby="heading<?php echo $c ?>" class="panel-collapse collapse"
+                 role="tabpanel">
+              <div class="panel-body">Here will be your invoice data 😉</div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <my-footer/>
+  </div>
+
+</template>
+
+
+<style scoped>
+.flexbox_horizontal {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+
+.payment_info_2col {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  width: 100%;
+  margin: 0 10px;
+}
+
+.payment_info {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  border-radius: 5px;
+  width: 100%;
+  padding: 50px 30px;
+  box-shadow: -5px 5px 20px 1px #ddd;
+  background-color: #fff;
+  margin: 0 10px;
+}
+
+.bank_info {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  border-radius: 5px;
+  width: 100%;
+  padding: 50px 30px;
+  box-shadow: -5px 5px 20px 1px #ddd;
+  background-color: #fff;
+  margin: 0 10px;
+}
+
+
+.invoices {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  border-radius: 5px;
+  width: 100%;
+  padding: 50px 30px;
+  box-shadow: -5px 5px 20px 1px #ddd;
+  background-color: #fff;
+  margin: 0 10px;
+  margin-top: 20px;
+}
+
+
+.payment_info {
+  justify-content: center !important;
+  text-align: center;
+}
+
+
+.title {
+  font-family: cg;
+  font-size: 20px;
+  color: #393939;
+  font-weight: 600;
+  margin: 5px;
+}
+
+.bold_title {
+  font-family: cg;
+  font-size: 32px;
+  color: #91003d;
+  font-weight: 800;
+  margin: 5px;
+}
+
+.default_text {
+  font-family: cg;
+  font-size: 16px;
+  color: #484848;
+  font-weight: 500;
+  margin: 5px;
+}
+
+.button_default {
+  background-color: #fff;
+  padding: 10px 35px;
+  margin: 10px 0;
+  text-align: center;
+  width: 200px;
+  color: #91003d;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 10px auto;
+  transition: .5s ease;
+  box-shadow: 5px 5px 0 0 #91003d, inset 5px 5px 0 0 #91003d;
+}
+
+.button_default:hover {
+  background: transparent;
+  box-shadow: 0 0 0 0 #000, inset 108px 72px 0 0 #000;
+  transition: .5s ease;
+  cursor: pointer;
+  color: white;
+}
+
+
+/*Your offer section*/
+.button_payment {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  border: 5px solid #91003d;
+  width: 200px;
+  margin-top: 20px;
+  padding: 10px 30px;
+  font-weight: 900;
+  animation: pulse 3s infinite;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.button_payment:hover {
+  transform: translateY(-3px);
+}
+
+.payment_logo {
+  width: 50px;
+}
+
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+  }
+
+  70% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0.95);
+  }
+}
+
+
+.colored_text {
+  text-decoration: underline;
+  color: #91003d;
+  margin: 5px;
+}
+
+
+.panel-ico-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: relative;
+  padding: 0 30px;
+}
+
+.panel-ico-title i {
+  margin-top: 20px;
+}
+
+
+.panel.panel-default {
+  border-top: 1px solid #d1d1d1;
+  border-bottom: 1px solid #d1d1d1;
+}
+
+.panel-collapse.collapse {
+  padding: 0 30px;
+  padding-bottom: 20px;
+}
+
+.panel.panel-default:hover {
+  cursor: pointer;
+}
+
+
+.fa-chevron-up {
+  transition: .7s ease;
+}
+
+.icorotation {
+  transform: rotate(180deg);
+  transition: .7s ease;
+}
+</style>

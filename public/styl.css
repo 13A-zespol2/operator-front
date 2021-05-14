@@ -1,0 +1,21 @@
+body{
+    background-image: url("/src/images/lines_background.png");
+    margin:0;
+    border:none;
+    border-radius: 0px;
+    overflow-x: hidden;
+    min-height:100vh;
+}
+@font-face {
+    font-family: "cg";
+    src: url("/src/fonts/CenturyGothic.ttf");
+}
+
+h1, h2, h3, h4, h5, h6, p, span, ul, li, a, div{
+    font-family: cg;
+}
+
+
+
+
+
