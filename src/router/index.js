@@ -2,21 +2,23 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Header from "../components/Header"
 import Footer from "../components/Footer"
+import Register from "../components/Register"
 
 Vue.use(VueRouter);
 Vue.component('my-header',Header)
 Vue.component('my-footer',Footer)
+Vue.component('register',Register)
 const loggedInGuard = (to, from, next) => {
   if (sessionStorage.getItem('loggedIn')) {
     next();
   } else {
-    next('/');
+    next('/dashboard');
   }
 };
 
 const notLoggedInGuard = (to, from, next) => {
   if (sessionStorage.getItem('loggedIn')) {
-    next('/dashboard');
+    next('/footer');
   } else {
     next();
   }
@@ -26,7 +28,7 @@ const routes = [
   {
     path: '/',
     name: 'Block',
-    component: () => import('../components/packages'),
+    component: () => import('../components/Login'),
     beforeEnter: notLoggedInGuard,
   },
   {
@@ -35,6 +37,14 @@ const routes = [
     component: () => import('../components/Dashboard'),
     beforeEnter: loggedInGuard,
   },
+  {
+    path: '/register',
+    name: 'register',
+    component: () => import('../components/Register'),
+    beforeEnter: notLoggedInGuard,
+  },
+
+
 ];
 
 const router = new VueRouter({

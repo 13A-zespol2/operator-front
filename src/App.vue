@@ -39,6 +39,34 @@ export default {
 ::-webkit-scrollbar-track-piece {
   background: #fff;
 }
+.button_payment {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  border: 5px solid #91003d;
+  width: 200px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px 30px;
+  font-weight: 900;
+  animation: pulse 3s infinite;
+  transition: .2s ease;
+}
+
+.button_payment:hover {
+  transform: translatex(-15px);
+  border-top: 4px solid #91003d;
+  border-left: 4px solid #91003d;
+  border-bottom: 8px solid #91003d;
+  border-right: 8px solid #91003d;
+}
+
+.payment_logo {
+  width: 20px;
+  margin: 0 10px;
+}
 
 
 

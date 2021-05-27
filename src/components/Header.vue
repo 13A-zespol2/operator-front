@@ -33,6 +33,9 @@
               <a href="contact.html">
                 <li>Contacts</li>
               </a>
+              <a href="contact.html">
+                <li>Logout</li>
+              </a>
             </ul>
           </div>
         </div>
