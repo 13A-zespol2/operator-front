@@ -5,16 +5,18 @@
         <div class="flexbox_horizontal">
           <div class="register_container">
             <form class="register_form">
-              <div class="pseudo"><input v-model="registerForm.nameForm" placeholder="Name" type="text"></div>
-              <div class="pseudo"><input v-model="registerForm.surnameForm" placeholder="Surname" type="text"></div>
-              <div class="pseudo"><input v-model="registerForm.emailForm" placeholder="E-mail" type="text"></div>
-              <div class="pseudo"><input v-model="registerForm.passwordForm" placeholder="Password" type="password">
+              <div class="pseudo"><input v-model="registerForm.name" placeholder="Name" type="text"></div>
+              <div class="pseudo"><input v-model="registerForm.surname" placeholder="Surname" type="text"></div>
+              <div class="pseudo"><input v-model="registerForm.email" placeholder="E-mail" type="text"></div>
+              <div class="pseudo"><input v-model="registerForm.password" placeholder="Password" type="password">
               </div>
               <div class="pseudo"><input placeholder="Retype Password" type="password"></div>
-              <input class="button_default" name="login" type="submit" value="Register" v-on:click="register"/>
+
+
+              <input class="button_default" name="login" type="submit" value="Register" v-on:click="register()">
+
               <a class="button_payment" v-on:click="google">Log in with <img class="payment_logo"
                                                                              src="../images/google_logo.png"></a>
-
             </form>
           </div>
         </div>
@@ -35,11 +37,10 @@ export default {
   data() {
     return {
       registerForm: {
-        nameForm: 'asdas',
-        surnameForm: '',
-        emailForm: '',
-        passwordForm: '',
-
+        name: '',
+        surname: '',
+        email: '',
+        password: '',
       }
     }
 
@@ -48,16 +49,9 @@ export default {
   methods:
       {
         register() {
-          /*  let data = {
-              name: this.nameForm,
-              surnameForm: this.surnameForm,
-              emailForm: this.emailForm,
-              passwordForm: this.passwordForm,
-            }
-  */
-          axios.post(`${endpoint.url}/register`, JSON.stringify(this.registerForm), {
+          axios.post(`${endpoint.url}/register`, this.registerForm, {
             headers: {
-              'Content-Type': 'application/json'
+              "Content-Type": "application/json"
             }
           })
               .then((response) => {

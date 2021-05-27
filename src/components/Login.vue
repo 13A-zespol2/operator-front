@@ -11,20 +11,21 @@
             <input type="hidden"/>
 
             <div class="divinput">
-              <input id="username" autofocus class="login_input" maxlength="20" placeholder="Login"
+              <input id="username" v-model="loginForm.login" autofocus class="login_input" maxlength="20" placeholder="Login"
                      required type="text"/><br/>
             </div>
             <div class="divinput2">
-              <input id="password" ref="password" class="login_input" maxlength="20" placeholder="Password" required
+              <input id="password" ref="password" v-model="loginForm.password" class="login_input" maxlength="20" placeholder="Password" required
                      type="password"/>
             </div>
+            <input class="button_default" name="login" type="submit" value="Register" v-on:click="submit">
 
-            <button class="button_default" v-on:click="submit">Login</button>
+<!--            <button class="button_default" v-on:click="submit">Login</button>-->
           </form>
           <p class="title">OR...</p>
           <a class="button_payment" v-on:click="google">Log in with <img class="payment_logo"
                                                                          src="../images/google_logo.png"></a>
-          <p>No account <span class="colored_text" v-on:click="register()">Create one</span></p>
+          <p>No account <span class="colored_text" v-on:click="registerRR()">Create one</span></p>
         </div>
       </div>
     </div>
@@ -39,26 +40,21 @@ import endpoint from '../endpoint.json';
 export default {
   data() {
     return {
-      login: null,
-      form: {
+      loginForm: {
         name: '',
+        surname: '',
         email: '',
-        gender: '',
-        refer: '',
-        profession: [],
-        message: '',
-        satisfaction: '5',
-        interested: [],
-        terms: false
+        password: '',
       }
     }
   },
   methods: {
     submit() {
-      axios.post(`${endpoint.url}/login`, this.form)
+      console.log("DSad")
+      axios.post(`${endpoint.url}/login`, this.loginForm)
           .then((response) => {
             if (response.status === 200) {
-              this.$router.push('/dashboard');
+             // this.$router.push('/dashboard');
             }
           })
           .catch(() => {
@@ -78,7 +74,7 @@ export default {
             this.info = 'Niepoprawne dane do logowania';
           });
     },
-    register() {
+    registerRR() {
       this.$router.push("/register")
     }
   }

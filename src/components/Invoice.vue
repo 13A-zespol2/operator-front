@@ -16,7 +16,7 @@
               <p class="bold_title">6 days</p>
             </div>
           </div>
-          <a class="button_payment">Pay now with <img class="payment_logo" src="images/payu_logo.png"></a>
+          <a class="button_payment">Pay now with <img class="payment_logo" src="src/images/payu_logo.png"></a>
         </div>
 
         <div class="bank_info">
