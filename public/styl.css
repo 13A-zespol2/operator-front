@@ -1,5 +1,5 @@
 body{
-    background-image: url("/src/images/lines_background.png");
+
     margin:0;
     border:none;
     border-radius: 0px;
@@ -11,6 +11,10 @@ body{
     src: url("/src/fonts/CenturyGothic.ttf");
 }
 
+
+#app{
+    background-image: url("/src/images/lines_background.png");
+}
 h1, h2, h3, h4, h5, h6, p, span, ul, li, a, div{
     font-family: cg;
 }

@@ -30,7 +30,7 @@
 }
 
 .footer_col{
-
+align-items: center;
   background-color: #91003d;
   max-width:100%;
   height:50px;
@@ -45,9 +45,11 @@
   margin:auto;
   font-weight:500;
 }
-
-footer p{
-  text-align: center;
+.footer_col p {
+  margin: 0 0 !important;
 }
+
+
+
 
 </style>

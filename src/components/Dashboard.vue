@@ -171,7 +171,7 @@ export default {
   text-align: center;
   align-items: center;
   border: 5px solid #91003d;
-  width: 200px;
+  width: 100%;
   margin-top: 20px;
   padding: 10px 30px;
   font-weight: 900;

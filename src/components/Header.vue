@@ -1,3 +1,4 @@
+
 <template>
   <div>
     <div class="topbar">
@@ -105,6 +106,8 @@ template{
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  align-items: center;
+  height: 100%;
 }
 
 .header ul li {

@@ -34,7 +34,9 @@ import endpoint from "@/endpoint.json";
 
 export default {
   name: "Register",
+
   data() {
+
     return {
       registerForm: {
         name: '',
@@ -43,7 +45,6 @@ export default {
         password: '',
       }
     }
-
   }
   ,
   methods:
@@ -56,6 +57,7 @@ export default {
           })
               .then((response) => {
                 if (response.status === 200) {
+
                   this.$router.push('/dashboard');
                 }
               })

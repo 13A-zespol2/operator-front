@@ -11,14 +11,14 @@
             <input type="hidden"/>
 
             <div class="divinput">
-              <input id="username" v-model="loginForm.login" autofocus class="login_input" maxlength="20" placeholder="Login"
+              <input id="username" v-model="loginForm.email" autofocus class="login_input"  placeholder="Login"
                      required type="text"/><br/>
             </div>
             <div class="divinput2">
-              <input id="password" ref="password" v-model="loginForm.password" class="login_input" maxlength="20" placeholder="Password" required
+              <input id="password" ref="password" v-model="loginForm.password" class="login_input" placeholder="Password" required
                      type="password"/>
             </div>
-            <input class="button_default" name="login" type="submit" value="Register" v-on:click="submit">
+            <input class="button_default" name="login" type="submit" value="Login" v-on:click="submit">
 
 <!--            <button class="button_default" v-on:click="submit">Login</button>-->
           </form>
@@ -50,11 +50,13 @@ export default {
   },
   methods: {
     submit() {
-      console.log("DSad")
+
       axios.post(`${endpoint.url}/login`, this.loginForm)
           .then((response) => {
             if (response.status === 200) {
-             // this.$router.push('/dashboard');
+              console.log("dsa")
+              sessionStorage.setItem('loggedIn', this.user);
+              this.$router.push('/dashboard');
             }
           })
           .catch(() => {
