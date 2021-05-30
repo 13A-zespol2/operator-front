@@ -20,13 +20,15 @@
     "vue-axios": "^3.2.4",
     "vue-dark-mode-switch": "^1.1.0",
     "vue-router": "^3.5.1",
+    "vue-simple-password-meter": "^0.0.24",
+    "vuelidate": "^0.7.6",
     "vuetify": "^2.4.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-plugin-router": "~4.5.0",
-    "@vue/cli-service": "^4.1.1",
+    "@vue/cli-service": "^3.3.1",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.8.0",
     "eslint-plugin-vue": "^6.2.2",

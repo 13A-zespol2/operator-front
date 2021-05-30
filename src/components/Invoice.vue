@@ -10,7 +10,6 @@
               <p class="title">Invoice value</p>
               <p class="bold_title">75.67$</p>
             </div>
-
             <div class="invoice_deadline">
               <p class="title">Invoice deadline</p>
               <p class="bold_title">6 days</p>
@@ -18,16 +17,14 @@
           </div>
           <a class="button_payment">Pay now with <img class="payment_logo" src="src/images/payu_logo.png"></a>
         </div>
-
-        <div class="bank_info">
-          <p class="title">Bank transfer details</p>
-          <p class="default_text">CallingApp Inc.</p>
-          <p class="default_text">1921 Harvest Lane</p>
-          <p class="default_text">New York, NY 12210</p>
-          <p class="default_text">Account number: <b> 4157 8545 1223 6974</b></p>
-
+          <div class="bank_info">
+            <p class="title">Bank transfer details</p>
+            <p class="default_text">CallingApp Inc.</p>
+            <p class="default_text">1921 Harvest Lane</p>
+            <p class="default_text">New York, NY 12210</p>
+            <p class="default_text">Account number: <b> 4157 8545 1223 6974</b></p>
+          </div>
         </div>
-      </div>
 
       <div class="flexbox_horizontal">
         <div class="invoices">
@@ -36,64 +33,59 @@
         </div>
       </div>
 
-
       <div class="flexbox_horizontal">
         <div class="invoices">
           <div class="panel panel-default">
-            <div id="heading" class="panel-heading" role="tab">
+            <div class="panel-heading" role="tab">
               <div class="panel-ico-title">
                 <h4 class="panel-title">FV/215123/04/2021</h4>
                 <i class="fas fa-chevron-up"></i>
               </div>
             </div>
-            <div id="collapse" aria-labelledby="heading<?php echo $c ?>" class="panel-collapse collapse"
+            <div aria-labelledby="heading<?php echo $c ?>" class="panel-collapse collapse"
                  role="tabpanel">
               <div class="panel-body">Here will be your invoice data 😉</div>
             </div>
           </div>
 
-
           <div class="panel panel-default">
-            <div id="heading" class="panel-heading" role="tab">
+            <div class="panel-heading" role="tab">
               <div class="panel-ico-title">
                 <h4 class="panel-title">FV/6786544/03/2021</h4>
                 <i class="fas fa-chevron-up"></i>
               </div>
             </div>
-            <div id="collapse" aria-labelledby="heading<?php echo $c ?>" class="panel-collapse collapse"
+            <div aria-labelledby="heading<?php echo $c ?>" class="panel-collapse collapse"
                  role="tabpanel">
               <div class="panel-body">Here will be your invoice data 😉</div>
             </div>
           </div>
 
-
           <div class="panel panel-default">
-            <div id="heading" class="panel-heading" role="tab">
+            <div class="panel-heading" role="tab">
               <div class="panel-ico-title">
                 <h4 class="panel-title">FV/221457/02/2021</h4>
                 <i class="fas fa-chevron-up"></i>
               </div>
             </div>
-            <div id="collapse" aria-labelledby="heading<?php echo $c ?>" class="panel-collapse collapse"
+            <div aria-labelledby="heading<?php echo $c ?>" class="panel-collapse collapse"
                  role="tabpanel">
               <div class="panel-body">Here will be your invoice data 😉</div>
             </div>
           </div>
 
           <div class="panel panel-default">
-            <div id="heading" class="panel-heading" role="tab">
+            <div class="panel-heading" role="tab">
               <div class="panel-ico-title">
                 <h4 class="panel-title">FV/7854614/01/2021</h4>
                 <i class="fas fa-chevron-up"></i>
               </div>
             </div>
-            <div id="collapse" aria-labelledby="heading<?php echo $c ?>" class="panel-collapse collapse"
+            <div aria-labelledby="heading<?php echo $c ?>" class="panel-collapse collapse"
                  role="tabpanel">
               <div class="panel-body">Here will be your invoice data 😉</div>
             </div>
           </div>
-
-
         </div>
       </div>
     </div>

@@ -9,16 +9,14 @@
           <div class="flexbox_horizontal">
             <div class="phone_info">
               <img class="img_responsive" src="../images/iphone_x.png">
-              <p class="title">Iphone X 128GB (iOS 14.5.1)</p>
-              <a class="button_default">Contacts</a>
-              <a class="button_default">History</a>
+              <p class="title">iPhone 12 128GB (iOS 14.5.1)</p>
+              <a class="button_default">Change PIN</a>
             </div>
 
             <div class="user_data_info">
               <div class="user_packages">
                 <p class="title"> Your offer </p>
                 <p class="bold_title">Subscription premium ++</p>
-                <p class="default_text">You have <b>6 days</b> to realize your payment!</p>
               </div>
 
               <div class="user_numbers">
@@ -35,6 +33,7 @@
                 <p class="colored_text">Your invoices</p>
                 <p class="default_text">Payable to: <b>19.05.2021</b></p>
                 <p class="default_text" style="color:red;font-weight:700;">Not paid yet 🙄</p>
+                <p class="default_text">You have <b>6 days</b> to realize your payment!</p>
                 <a class="button_payment">Pay now with <img alt="tekst" class="payment_logo"
                                                             src="../images/payu_logo.png"></a>
               </div>

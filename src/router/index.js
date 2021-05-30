@@ -4,12 +4,14 @@ import Header from "../components/Header"
 import Footer from "../components/Footer"
 import Register from "../components/Register"
 import Login from "../components/Login"
+import Packages from "../components/Packages";
 
 Vue.use(VueRouter);
 Vue.component('my-header',Header)
 Vue.component('my-footer',Footer)
 Vue.component('register',Register)
 Vue.component('login',Login)
+Vue.component('packages', Packages)
 const loggedInGuard = (to, from, next) => {
   if (sessionStorage.getItem('loggedIn')) {
     next();
@@ -39,6 +41,17 @@ const routes = [
     component: () => import('../components/Dashboard'),
     beforeEnter: loggedInGuard,
   },
+      {
+        path: '/invoice',
+        name: 'invoice',
+        component: () => import('../components/Invoice'),
+      },
+      {
+        path: '/packages',
+        name: 'packages',
+        component: () => import('../components/Packages'),
+      },
+
   {
     path: '/register',
     name: 'register',

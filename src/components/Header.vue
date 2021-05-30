@@ -1,4 +1,3 @@
-
 <template>
   <div>
     <div class="topbar">
@@ -8,33 +7,30 @@
       <div class="header">
         <div class="not_full_page">
           <div class="logo">
-            <img class="logo_img" src="../images/logo.png">
+            <a v-on:click="changeRoute('/dashboard')"><img class="logo_img" src="../images/logo.png"></a>
           </div>
 
           <div class="default_menu">
             <ul>
-              <a href="homepage.html">
-                <li>Home</li>
-              </a>
-              <a href="invoices.html">
+              <a v-on:click="changeRoute('/invoice')">
                 <li>Invoices</li>
               </a>
-              <a href="numbers.html">
+              <a v-on:click="changeRoute('/dashboard')">
                 <li>Numbers</li>
               </a>
-              <a href="history.html">
+              <a v-on:click="changeRoute('/dashboard')">
                 <li>History</li>
               </a>
-              <a href="usage.html">
+              <a v-on:click="changeRoute('/dashboard')">
                 <li>Usage</li>
               </a>
-              <a href="packages.html">
+              <a v-on:click="changeRoute('/packages')">
                 <li>Packages</li>
               </a>
-              <a href="contact.html">
+              <a v-on:click="changeRoute('/dashboard')">
                 <li>Contacts</li>
               </a>
-              <a href="contact.html">
+              <a v-on:click="logout()">
                 <li>Logout</li>
               </a>
             </ul>
@@ -48,17 +44,50 @@
 
 <script>
 
+import axios from "axios";
+
+export default {
+  data: () => ({
+    dialog: false,
+    drawer: null,
+    path: '',
+  }),
+  methods:
+      {
+        changeRoute(route) {
+          this.$router.push(route).catch(error => {
+            if(error.name !== "NavigationDuplicated"){
+              throw error;
+            }
+          });
+        },
+        logout() {
+          sessionStorage.removeItem('loggedIn');
+          axios.get('/')
+              .then((response) => {
+                if (response.status === 200) {
+                  sessionStorage.removeItem('loggedIn');
+                  this.$router.push('/');
+                }
+              })
+              .catch(() => {
+              });
+        },
+      }
+}
+
 
 </script>
 
 <style scoped>
-template{
-  margin:0;
-  border:none;
+template {
+  margin: 0;
+  border: none;
   border-radius: 0px;
   overflow-x: hidden;
-  min-height:100vh;
+  min-height: 100vh;
 }
+
 .topbar {
   height: 10px;
   width: 100vw;
@@ -67,6 +96,7 @@ template{
   top: 0;
 
 }
+
 /*Header styling*/
 .header {
   display: flex;
@@ -114,13 +144,13 @@ template{
   color: #91003d;
   padding: 0 20px;
   font-size: 18px;
-  font-family: cg,serif;
+  font-family: cg, serif;
   font-weight: 900;
 }
 
 
 h1, h2, h3, h4, h5, h6, p, span, ul, li, a, div {
-  font-family: cg,serif;
+  font-family: cg, serif;
 
 }
 

@@ -1,23 +1,33 @@
 <template>
   <div>
     <div class="main">
+      <password-meter :password="registerForm.password"/>
       <div class="container">
+
         <div class="flexbox_horizontal">
           <div class="register_container">
+
+            <div v-if="this.$v.registerForm.$error">
+              Form has errors
+            </div>
+
             <form class="register_form">
-              <div class="pseudo"><input v-model="registerForm.name" placeholder="Name" type="text"></div>
-              <div class="pseudo"><input v-model="registerForm.surname" placeholder="Surname" type="text"></div>
-              <div class="pseudo"><input v-model="registerForm.email" placeholder="E-mail" type="text"></div>
-              <div class="pseudo"><input v-model="registerForm.password" placeholder="Password" type="password">
+              <div class="logo" style="margin-bottom:20px;">
+                <a v-on:click="$router.push('/')"><img class="logo_img" src="../images/logo.png"></a>
               </div>
-              <div class="pseudo"><input placeholder="Retype Password" type="password"></div>
+              <div class="pseudo"><input v-model="registerForm.name" placeholder="Name" type="text" required></div>
+              <div class="pseudo"><input v-model="registerForm.surname" placeholder="Surname" type="text" required></div>
+              <div class="pseudo"><input v-model="registerForm.email" placeholder="E-mail" type="email" required></div>
+              <div class="pseudo"><input v-model="registerForm.password" placeholder="Password" type="password" required>
+              </div>
 
-
+              <div class="pseudo"><input v-model="registerForm.retype" placeholder="Retype Password" type="password" required></div>
               <input class="button_default" name="login" type="submit" value="Register" v-on:click="register()">
 
               <a class="button_payment" v-on:click="google">Log in with <img class="payment_logo"
                                                                              src="../images/google_logo.png"></a>
             </form>
+
           </div>
         </div>
       </div>
@@ -31,39 +41,54 @@
 <script>
 import axios from "axios";
 import endpoint from "@/endpoint.json";
+import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
+import PasswordMeter from "vue-simple-password-meter";
 
 export default {
   name: "Register",
-
+  components: { PasswordMeter },
   data() {
-
     return {
       registerForm: {
         name: '',
         surname: '',
         email: '',
-        password: '',
+        password: null,
       }
+    }
+  },
+  validations: {
+    registerForm:{
+      name: { required },
+      surname: { required },
+      email: { required, email },
+      password: {required, min: minLength(5) },
+      retype: {sameAsPassword: sameAs('password') }
     }
   }
   ,
   methods:
       {
         register() {
-          axios.post(`${endpoint.url}/register`, this.registerForm, {
-            headers: {
-              "Content-Type": "application/json"
-            }
-          })
-              .then((response) => {
-                if (response.status === 200) {
+          this.$v.registerForm.$touch();
+          if (this.$v.registerForm.$error) {
+            return
+          } else {
+            axios.post(`${endpoint.url}/register`, this.registerForm, {
+              headers: {
+                "Content-Type": "application/json"
+              }
+            })
+                .then((response) => {
+                  if (response.status === 200) {
 
-                  this.$router.push('/dashboard');
-                }
-              })
-              .catch(() => {
-                this.info = 'Niepoprawne dane do logowania';
-              })
+                    this.$router.push('/dashboard');
+                  }
+                })
+                .catch(() => {
+                  this.info = 'Niepoprawne dane do logowania';
+                })
+          }
         },
 
         google() {
@@ -84,6 +109,7 @@ export default {
 </script>
 
 <style scoped>
+
 .register_container {
   display: flex;
   justify-content: center;

@@ -18,7 +18,7 @@
               <input id="password" ref="password" v-model="loginForm.password" class="login_input" placeholder="Password" required
                      type="password"/>
             </div>
-            <input class="button_default" name="login" type="submit" value="Login" v-on:click="submit">
+            <a class="button_default" name="login" type="submit" v-on:click="submit"> Login </a>
 
 <!--            <button class="button_default" v-on:click="submit">Login</button>-->
           </form>
@@ -37,12 +37,12 @@
 import axios from 'axios'
 import endpoint from '../endpoint.json';
 
+
 export default {
+
   data() {
     return {
       loginForm: {
-        name: '',
-        surname: '',
         email: '',
         password: '',
       }
@@ -50,7 +50,6 @@ export default {
   },
   methods: {
     submit() {
-
       axios.post(`${endpoint.url}/login`, this.loginForm)
           .then((response) => {
             if (response.status === 200) {
