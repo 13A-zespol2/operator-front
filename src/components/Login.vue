@@ -11,16 +11,17 @@
             <input type="hidden"/>
 
             <div class="divinput">
-              <input id="username" v-model="loginForm.email" autofocus class="login_input"  placeholder="Login"
+              <input id="username" v-model="loginForm.email" autofocus class="login_input" placeholder="Login"
                      required type="text"/><br/>
             </div>
             <div class="divinput2">
-              <input id="password" ref="password" v-model="loginForm.password" class="login_input" placeholder="Password" required
+              <input id="password" ref="password" v-model="loginForm.password" class="login_input"
+                     placeholder="Password" required
                      type="password"/>
             </div>
             <a class="button_default" name="login" type="submit" v-on:click="submit"> Login </a>
 
-<!--            <button class="button_default" v-on:click="submit">Login</button>-->
+            <!--            <button class="button_default" v-on:click="submit">Login</button>-->
           </form>
           <p class="title">OR...</p>
           <a class="button_payment" v-on:click="google">Log in with <img class="payment_logo"
@@ -64,16 +65,7 @@ export default {
     },
 
     google() {
-      axios.get(`${endpoint.url}/oauth2/authorization/google`)
-          .then((response) => {
-            if (response.status === 200) {
-              sessionStorage.setItem('loggedIn', this.login);
-              this.$router.push("dashboard")
-            }
-          })
-          .catch(() => {
-            this.info = 'Niepoprawne dane do logowania';
-          });
+      window.location.href=`${endpoint.url}/oauth2/authorization/google`;
     },
     registerRR() {
       this.$router.push("/register")
@@ -176,8 +168,6 @@ a:active, button:active, a, button, input {
   font-weight: 600;
   margin: 5px;
 }
-
-
 
 
 .colored_text {
