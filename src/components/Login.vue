@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <div class="main">
       <div class="container" style="height:84vh;display:flex;justify-content:center;">
         <div class="login_form">
@@ -24,9 +25,8 @@
             <!--            <button class="button_default" v-on:click="submit">Login</button>-->
           </form>
           <p class="title">OR...</p>
-          <a class="button_payment" v-on:click="google">Log in with <img class="payment_logo"
-                                                                         src="../images/google_logo.png"></a>
-          <p>No account <span class="colored_text" v-on:click="registerRR()">Create one</span></p>
+          <button v-google-signin-button="clientId" class="google-signin-button"> Continue with Google</button>
+          <p>No account <span class="colored_text">Create one</span></p>
         </div>
       </div>
     </div>
@@ -37,16 +37,23 @@
 <script>
 import axios from 'axios'
 import endpoint from '../endpoint.json';
-
+import GoogleSignInButton from 'vue-google-signin-button-directive'
 
 export default {
-
+  directives: {
+    GoogleSignInButton
+  },
   data() {
     return {
       loginForm: {
         email: '',
         password: '',
-      }
+
+      },
+      token: '12',
+
+      clientId: '1010076371628-49i4v1vkp465oee457u281tl5tksc417.apps.googleusercontent.com'
+
     }
   },
   methods: {
@@ -64,12 +71,32 @@ export default {
           });
     },
 
-    google() {
-      window.location.href=`${endpoint.url}/oauth2/authorization/google`;
+    OnGoogleAuthSuccess(idToken) {
+      console.log(idToken);
+      this.token = idToken;
+
+      axios.get(`${endpoint.url}/googleRegister/${idToken}`)
+          .then((response) => {
+            if (response.status === 200) {
+              console.log("dsa")
+              sessionStorage.setItem('loggedIn', this.token);
+              this.$router.push("dashboard")
+            }
+          })
+          .catch(() => {
+            this.info = 'Niepoprawne dane do logowania';
+          });
     },
-    registerRR() {
-      this.$router.push("/register")
+
+    google() {
+
+    },
+
+    OnGoogleAuthFail(error) {
+      console.log(error)
     }
+
+
   }
 
 
@@ -104,6 +131,21 @@ export default {
   position: relative;
 }
 
+.google-signin-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  border: 5px solid #91003d !important;
+  width: 200px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px 30px;
+  font-weight: 900;
+  animation: pulse 3s infinite;
+  transition: .2s ease;
+}
 
 .divinput:before {
   font-family: 'Font Awesome 5 Free';

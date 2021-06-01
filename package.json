@@ -19,6 +19,7 @@
     "vue": "^2.6.11",
     "vue-axios": "^3.2.4",
     "vue-dark-mode-switch": "^1.1.0",
+    "vue-google-signin-button-directive": "^1.0.3",
     "vue-router": "^3.5.1",
     "vue-simple-password-meter": "^0.0.24",
     "vuelidate": "^0.7.6",
@@ -31,6 +32,7 @@
     "@vue/cli-service": "^3.3.1",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.8.0",
+    "eslint-config-google": "^0.14.0",
     "eslint-plugin-vue": "^6.2.2",
     "npm-force-resolutions": "^0.0.10",
     "sass": "^1.32.0",
@@ -60,5 +62,18 @@
   ],
   "resolutions": {
     "https-proxy-agent": "^3.0.0"
-  }
+  },
+  "description": "```\r npm install\r ```",
+  "main": "babel.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/13A-zespol2/operator-front.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/13A-zespol2/operator-front/issues"
+  },
+  "homepage": "https://github.com/13A-zespol2/operator-front#readme"
 }
