@@ -60,7 +60,13 @@ export default {
         'my-header': Header
       }
     };
+
   },
+
+  mounted() {
+   console.log()
+  },
+
 };
 </script>
 <style>

@@ -26,7 +26,7 @@
           </form>
           <p class="title">OR...</p>
           <button v-google-signin-button="clientId" class="google-signin-button"> Continue with Google</button>
-          <p>No account <span class="colored_text">Create one</span></p>
+          <p>No account <span  v-on:click="register" class="colored_text">Create one</span></p>
         </div>
       </div>
     </div>
@@ -50,19 +50,22 @@ export default {
         password: '',
 
       },
-      token: '12',
+      dataToDashboard: '',
 
       clientId: '1010076371628-49i4v1vkp465oee457u281tl5tksc417.apps.googleusercontent.com'
 
     }
   },
+  beforeCreate() {
+    sessionStorage.setItem('loggedIn',null)
+  },
+
+
   methods: {
     submit() {
       axios.post(`${endpoint.url}/login`, this.loginForm)
           .then((response) => {
             if (response.status === 200) {
-              console.log("dsa")
-              sessionStorage.setItem('loggedIn', this.user);
               this.$router.push('/dashboard');
             }
           })
@@ -72,14 +75,12 @@ export default {
     },
 
     OnGoogleAuthSuccess(idToken) {
-      console.log(idToken);
-      this.token = idToken;
-
       axios.get(`${endpoint.url}/googleRegister/${idToken}`)
           .then((response) => {
             if (response.status === 200) {
-              console.log("dsa")
-              sessionStorage.setItem('loggedIn', this.token);
+              this.dataToDashboard = response.data
+              sessionStorage.setItem('dashboard', this.dataToDashboard);
+              console.log(response.data)
               this.$router.push("dashboard")
             }
           })
@@ -94,9 +95,11 @@ export default {
 
     OnGoogleAuthFail(error) {
       console.log(error)
+    },
+
+    register(){
+      this.$router.push("register")
     }
-
-
   }
 
 
