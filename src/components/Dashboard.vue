@@ -16,12 +16,11 @@
             <div class="user_data_info">
               <div class="user_packages">
                 <p class="title"> Your offer </p>
-                <p class="bold_title">Subscription premium ++</p>
+                <p class="bold_title">{{ this.data.contracts}}</p>
               </div>
-
               <div class="user_numbers">
                 <p class="title"> Your main number</p>
-                <p class="bold_title">+48 537 221 880</p>
+                <p class="bold_title">+48 {{ this.data.phoneNumberList[0].match(/.{1,3}/g).join(' ')}}</p>
                 <p class="colored_text">Your other numbers</p>
                 <p class="colored_text">Register new number</p>
               </div>
@@ -56,6 +55,7 @@ export default {
 
   data() {
     return {
+      data: [],
       components: {
         'my-header': Header
       }
@@ -64,7 +64,9 @@ export default {
   },
 
   mounted() {
-   console.log()
+    this.data = JSON.parse(sessionStorage.getItem('dashboard'));
+    //console.log(this.data.phoneNumberList[0]);
+    //console.log(this.data);
   },
 
 };

@@ -66,7 +66,9 @@ export default {
       axios.post(`${endpoint.url}/login`, this.loginForm)
           .then((response) => {
             if (response.status === 200) {
-              this.$router.push('/dashboard');
+              this.dataToDashboard = response.data;
+              sessionStorage.setItem('dashboard', JSON.stringify(this.dataToDashboard));
+              this.$router.push("dashboard")
             }
           })
           .catch(() => {
