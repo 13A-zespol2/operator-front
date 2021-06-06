@@ -21,7 +21,7 @@
 
               <div class="user_numbers">
                 <p class="title"> Your main number</p>
-                <p class="bold_title">+48 {{ this.phones }}</p>
+                <p class="bold_title">+48 537 221 880</p>
                 <p class="colored_text">Your other numbers</p>
                 <p class="colored_text">Register new number</p>
               </div>

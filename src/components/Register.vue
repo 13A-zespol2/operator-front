@@ -18,11 +18,9 @@
               <div class="pseudo"><input v-model="registerForm.name" placeholder="Name" type="text" required></div>
               <div class="pseudo"><input v-model="registerForm.surname" placeholder="Surname" type="text" required></div>
               <div class="pseudo"><input v-model="registerForm.email" placeholder="E-mail" type="email" required></div>
-              <div class="pseudo"><input v-model="registerForm.password" placeholder="Password" type="password" required>
-              </div>
-
+              <div class="pseudo"><input v-model="registerForm.password" placeholder="Password" type="password" required></div>
               <div class="pseudo"><input v-model="registerForm.retype" placeholder="Retype Password" type="password" required></div>
-              <input class="button_default" name="login" type="submit" value="Register" v-on:click="register()">
+              <a class="button_default" name="login" type="submit" v-on:click="register()"> Register </a>
 
               <a class="button_payment" v-on:click="google">Log in with <img class="payment_logo"
                                                                              src="../images/google_logo.png"></a>
@@ -70,6 +68,7 @@ export default {
   methods:
       {
         register() {
+
           this.$v.registerForm.$touch();
           if (this.$v.registerForm.$error) {
             return
@@ -81,8 +80,7 @@ export default {
             })
                 .then((response) => {
                   if (response.status === 200) {
-
-                    this.$router.push('/dashboard');
+                    this.$router.push('/');
                   }
                 })
                 .catch(() => {
@@ -157,14 +155,13 @@ export default {
 
 .button_default {
   background-color: #fff;
-  padding: 10px 35px;
+  padding: 15px 35px;
   margin: 10px 0;
   text-align: center;
   width: 200px;
   color: #393939;
   font-size: 16px;
   font-weight: 600;
-  margin: 10px auto;
   transition: .5s ease;
   box-shadow: 5px 5px 0 0 #91003d, inset 5px 5px 0 0 #91003d;
 }

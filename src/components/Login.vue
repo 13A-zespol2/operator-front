@@ -60,6 +60,9 @@ export default {
 
     }
   },
+  beforeCreate() {
+    sessionStorage.setItem('loggedIn',null)
+  },
 
 
   methods: {

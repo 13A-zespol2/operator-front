@@ -12,6 +12,7 @@ Vue.component('my-footer',Footer)
 Vue.component('register',Register)
 Vue.component('login',Login)
 Vue.component('packages', Packages)
+
 const loggedInGuard = (to, from, next) => {
   if (sessionStorage.getItem('loggedIn')) {
     next();
@@ -58,7 +59,6 @@ const routes = [
     component: () => import('../components/Register'),
 
   },
-
 ];
 
 const router = new VueRouter({
