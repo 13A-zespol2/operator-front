@@ -60,17 +60,13 @@ export default {
 
     }
   },
-  beforeCreate() {
-    sessionStorage.setItem('loggedIn',null)
-  },
-
 
   methods: {
     submit() {
       axios.post(`${endpoint.url}/login`, this.loginForm)
           .then((response) => {
             if (response.status === 200) {
-              sessionStorage.setItem('loggedIn', response.data)
+              sessionStorage.setItem('loggedIn', JSON.stringify(response.data))
               this.$router.push('/dashboard');
             }
           })
@@ -83,9 +79,6 @@ export default {
       axios.get(`${endpoint.url}/googleRegister/${idToken}`)
           .then((response) => {
             if (response.status === 200) {
-
-
-
               console.log(this.dataToDashboard)
               console.log(response)
               this.$router.push("/dashboard")

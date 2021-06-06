@@ -10,7 +10,7 @@
             <div class="phone_info">
               <img class="img_responsive" src="../images/iphone_x.png">
               <p class="title">iPhone 12 128GB (iOS 14.5.1)</p>
-              <a class="button_default" v-on:click="klik">Change PIN</a>
+              <a class="button_default" >Change PIN</a>
             </div>
 
             <div class="user_data_info">
@@ -21,7 +21,7 @@
 
               <div class="user_numbers">
                 <p class="title"> Your main number</p>
-                <p class="bold_title">+48 537 221 880</p>
+                <p class="bold_title">+48 </p>
                 <p class="colored_text">Your other numbers</p>
                 <p class="colored_text">Register new number</p>
               </div>
@@ -81,22 +81,16 @@ export default {
   },
 
   methods: {
-    klik() {
-      this.phones = sessionStorage.getItem('qwe').phones
-      console.log(this.phones)
-    },
 
     getDataToDashboard() {
-
-      const sessUser = sessionStorage.getItem('loggedIn').json;
-      let userSes = {
+      const sessUser = JSON.parse(sessionStorage.getItem('loggedIn'));
+    /*  let userSes = {
         email: sessUser.email
-      }
+      } */
       console.log(sessUser)
-      axios.post(`${endpoint.url}/dashboard/${userSes.email}`, userSes)
+      axios.post(`${endpoint.url}/dashboard`, sessUser)
           .then((response) => {
             if (response.status === 200) {
-
               console.log(response.data)
             }
           })
