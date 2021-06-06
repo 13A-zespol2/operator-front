@@ -26,7 +26,7 @@
           </form>
           <p class="title">OR...</p>
           <button v-google-signin-button="clientId" class="google-signin-button"> Continue with Google</button>
-          <p>No account <span  v-on:click="register" class="colored_text">Create one</span></p>
+          <p>No account <span class="colored_text" v-on:click="register">Create one</span></p>
         </div>
       </div>
     </div>
@@ -50,14 +50,15 @@ export default {
         password: '',
 
       },
-      dataToDashboard: '',
+      dataToDashboard: {
+        phones: [],
+        contract: '',
+        invoices: ''
+      },
 
-      clientId: '1010076371628-49i4v1vkp465oee457u281tl5tksc417.apps.googleusercontent.com'
+      clientId: '1010076371628-k41s2flppiahso1j57v8ocm4qlvjgmt3.apps.googleusercontent.com'
 
     }
-  },
-  beforeCreate() {
-    sessionStorage.setItem('loggedIn',null)
   },
 
 
@@ -66,6 +67,7 @@ export default {
       axios.post(`${endpoint.url}/login`, this.loginForm)
           .then((response) => {
             if (response.status === 200) {
+              sessionStorage.setItem('loggedIn', response.data)
               this.$router.push('/dashboard');
             }
           })
@@ -78,10 +80,12 @@ export default {
       axios.get(`${endpoint.url}/googleRegister/${idToken}`)
           .then((response) => {
             if (response.status === 200) {
-              this.dataToDashboard = response.data
-              sessionStorage.setItem('dashboard', this.dataToDashboard);
-              console.log(response.data)
-              this.$router.push("dashboard")
+
+
+
+              console.log(this.dataToDashboard)
+              console.log(response)
+              this.$router.push("/dashboard")
             }
           })
           .catch(() => {
@@ -89,15 +93,11 @@ export default {
           });
     },
 
-    google() {
-
-    },
-
     OnGoogleAuthFail(error) {
       console.log(error)
     },
 
-    register(){
+    register() {
       this.$router.push("register")
     }
   }
