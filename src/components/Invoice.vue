@@ -35,6 +35,7 @@
 
       <div class="flexbox_horizontal">
         <div class="invoices">
+
           <div class="panel panel-default">
             <div class="panel-heading" role="tab">
               <div class="panel-ico-title">
@@ -46,45 +47,7 @@
                  role="tabpanel">
               <div class="panel-body">Here will be your invoice data 😉</div>
             </div>
-          </div>
 
-          <div class="panel panel-default">
-            <div class="panel-heading" role="tab">
-              <div class="panel-ico-title">
-                <h4 class="panel-title">FV/6786544/03/2021</h4>
-                <i class="fas fa-chevron-up"></i>
-              </div>
-            </div>
-            <div aria-labelledby="heading<?php echo $c ?>" class="panel-collapse collapse"
-                 role="tabpanel">
-              <div class="panel-body">Here will be your invoice data 😉</div>
-            </div>
-          </div>
-
-          <div class="panel panel-default">
-            <div class="panel-heading" role="tab">
-              <div class="panel-ico-title">
-                <h4 class="panel-title">FV/221457/02/2021</h4>
-                <i class="fas fa-chevron-up"></i>
-              </div>
-            </div>
-            <div aria-labelledby="heading<?php echo $c ?>" class="panel-collapse collapse"
-                 role="tabpanel">
-              <div class="panel-body">Here will be your invoice data 😉</div>
-            </div>
-          </div>
-
-          <div class="panel panel-default">
-            <div class="panel-heading" role="tab">
-              <div class="panel-ico-title">
-                <h4 class="panel-title">FV/7854614/01/2021</h4>
-                <i class="fas fa-chevron-up"></i>
-              </div>
-            </div>
-            <div aria-labelledby="heading<?php echo $c ?>" class="panel-collapse collapse"
-                 role="tabpanel">
-              <div class="panel-body">Here will be your invoice data 😉</div>
-            </div>
           </div>
         </div>
       </div>

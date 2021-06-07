@@ -15,20 +15,11 @@
               <a v-on:click="changeRoute('/invoice')">
                 <li>Invoices</li>
               </a>
-              <a v-on:click="changeRoute('/dashboard')">
+              <a v-on:click="changeRoute('/numbers')">
                 <li>Numbers</li>
-              </a>
-              <a v-on:click="changeRoute('/dashboard')">
-                <li>History</li>
-              </a>
-              <a v-on:click="changeRoute('/dashboard')">
-                <li>Usage</li>
               </a>
               <a v-on:click="changeRoute('/packages')">
                 <li>Packages</li>
-              </a>
-              <a v-on:click="changeRoute('/dashboard')">
-                <li>Contacts</li>
               </a>
               <a v-on:click="logout()">
                 <li>Logout</li>

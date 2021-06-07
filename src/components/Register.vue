@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="main">
-      <password-meter :password="registerForm.password"/>
       <div class="container">
 
         <div class="flexbox_horizontal">
@@ -19,6 +18,7 @@
               <div class="pseudo"><input v-model="registerForm.surname" placeholder="Surname" type="text" required></div>
               <div class="pseudo"><input v-model="registerForm.email" placeholder="E-mail" type="email" required></div>
               <div class="pseudo"><input v-model="registerForm.password" placeholder="Password" type="password" required></div>
+              <password-meter class ="pass" :password="registerForm.password"/>
               <div class="pseudo"><input v-model="registerForm.retype" placeholder="Retype Password" type="password" required></div>
               <a class="button_default" name="login" type="submit" v-on:click="register()"> Register </a>
 
@@ -107,6 +107,11 @@ export default {
 </script>
 
 <style scoped>
+
+.pass{
+  height: 7px;
+  width: 100%;
+}
 
 .register_container {
   display: flex;

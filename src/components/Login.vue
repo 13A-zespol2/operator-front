@@ -25,7 +25,8 @@
             <!--            <button class="button_default" v-on:click="submit">Login</button>-->
           </form>
           <p class="title">OR...</p>
-          <button v-google-signin-button="clientId" class="google-signin-button"> Continue with Google</button>
+          <button v-google-signin-button="clientId" class="google-signin-button">Log in with <img class="payment_logo"
+                                                                                                  src="../images/google_logo.png"></button>
           <p>No account <span class="colored_text" v-on:click="register">Create one</span></p>
         </div>
       </div>
@@ -81,6 +82,7 @@ export default {
             if (response.status === 200) {
               console.log(this.dataToDashboard)
               console.log(response)
+              sessionStorage.setItem('loggedIn', JSON.stringify(response.data))
               this.$router.push("/dashboard")
             }
           })

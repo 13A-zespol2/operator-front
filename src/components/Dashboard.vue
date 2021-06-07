@@ -10,19 +10,14 @@
             <div class="phone_info">
               <img class="img_responsive" src="../images/iphone_x.png">
               <p class="title">iPhone 12 128GB (iOS 14.5.1)</p>
-              <a class="button_default" >Change PIN</a>
             </div>
 
             <div class="user_data_info">
-              <div class="user_packages">
-                <p class="title"> Your offer </p>
-                <p class="bold_title">Subscription premium ++</p>
-              </div>
 
               <div class="user_numbers">
                 <p class="title"> Your main number</p>
-                <p class="bold_title">+48 </p>
-                <p class="colored_text">Your other numbers</p>
+                <p class="bold_title">+48 {{}}</p>
+                <p class="colored_text" v-on:click="changeRoute('/numbers')">Your other numbers</p>
                 <p class="colored_text">Register new number</p>
               </div>
 
@@ -30,12 +25,9 @@
                 <p class="title"> Last invoice</p>
                 <p class="bold_title">75.67$</p>
                 <p class="default_text">Document number: <b>FV/24561234132/05/2021</b></p>
-                <p class="colored_text">Your invoices</p>
+                <p class="colored_text" v-on:click="changeRoute('/invoice')">Your invoices</p>
                 <p class="default_text">Payable to: <b>19.05.2021</b></p>
                 <p class="default_text" style="color:red;font-weight:700;">Not paid yet 🙄</p>
-                <p class="default_text">You have <b>6 days</b> to realize your payment!</p>
-                <a class="button_payment">Pay now with <img alt="tekst" class="payment_logo"
-                                                            src="../images/payu_logo.png"></a>
               </div>
             </div>
           </div>
@@ -62,16 +54,8 @@ export default {
       components: {
         'my-header': Header,
         'my-login': Login,
-
-        user: {
-          name: '',
-          surname: '',
-
-        }
       },
-
-      phones: [],
-
+      dataFromSession: [],
     };
 
   },
@@ -82,13 +66,22 @@ export default {
 
   methods: {
 
+    changeRoute(route) {
+      this.$router.push(route).catch(error => {
+        if(error.name !== "NavigationDuplicated"){
+          throw error;
+        }
+      });
+    },
+
     getDataToDashboard() {
-      const sessUser = JSON.parse(sessionStorage.getItem('loggedIn'));
+      //const sessUser = JSON.parse(sessionStorage.getItem('loggedIn'));
+      this.dataFromSession = JSON.parse(sessionStorage.getItem('loggedIn'));
     /*  let userSes = {
         email: sessUser.email
       } */
-      console.log(sessUser)
-      axios.post(`${endpoint.url}/dashboard`, sessUser)
+      console.log(this.dataFromSession)
+      axios.post(`${endpoint.url}/dashboard`, this.dataFromSession)
           .then((response) => {
             if (response.status === 200) {
               console.log(response.data)

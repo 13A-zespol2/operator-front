@@ -2,28 +2,40 @@
     <div class="main">
       <my-header/>
       <div class="container">
-        <p class="bold_title">SMS / MMS</p>
+        <p class="bold_title">SMS</p>
         <div class="packages_flex">
           <div class="package_info">
             <img src="../images/telephone_icon.png">
-            <p class="title">170 messages</p>
-            <p class="default_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-              Ipsum
-              has been the industry's standard dummy text ever since the 1500s.</p>
+            <p class="title">100 SMS</p>
+            <p class="default_text">
+              More SMS for you. In the 10 PLN package, you get 100 SMS to use.
+              The package fee is one-time and will be added to your invoice. </p>
+
             <div class="bottom_flex_section">
-              <p class="bottom_text package_off">Off</p>
-              <a class="button_more">More info</a>
+              <p><b>10 PLN</b></p>
+              <a class="button_more" v-on:click="buyPackage()"> BUY! </a>
             </div>
           </div>
           <div class="package_info">
             <img src="../images/telephone_icon.png">
-            <p class="title">Unlimited</p>
-            <p class="default_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-              Ipsum
-              has been the industry's standard dummy text ever since the 1500s.</p>
+            <p class="title">200 SMS</p>
+            <p class="default_text">
+              More SMS for you. In the 20 PLN package, you get 200 SMS to use.
+              The package fee is one-time and will be added to your invoice.</p>
             <div class="bottom_flex_section">
-              <p class="bottom_text package_on">On</p>
-              <a class="button_more">More info</a>
+              <p><b>20 PLN</b></p>
+              <a class="button_more" v-on:click="buyPackage()"> BUY! </a>
+            </div>
+          </div>
+          <div class="package_info">
+            <img src="../images/mail_icon.png">
+            <p class="title">300 SMS</p>
+            <p class="default_text">
+              More SMS for you. In the 30 PLN package, you get 300 SMS to use.
+              The package fee is one-time and will be added to your invoice.</p>
+            <div class="bottom_flex_section">
+              <p><b>30 PLN</b></p>
+              <a class="button_more" v-on:click="buyPackage()"> BUY! </a>
             </div>
           </div>
         </div>
@@ -34,47 +46,125 @@
         <div class="packages_flex">
           <div class="package_info">
             <img src="../images/mail_icon.png">
-            <p class="title">120 minutes</p>
-            <p class="default_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-              Ipsum
-              has been the industry's standard dummy text ever since the 1500s.</p>
+            <p class="title">100 minutes</p>
+            <p class="default_text">
+              More minutes for you. In the 10 PLN package, you get 100 minutes to use.
+              The package fee is one-time and will be added to your invoice.
+            </p>
             <div class="bottom_flex_section">
-              <p class="bottom_text package_off">Off</p>
-              <a class="button_more">More info</a>
+              <p><b>10 PLN</b></p>
+              <a class="button_more" v-on:click="buyPackage()"> BUY! </a>
             </div>
           </div>
           <div class="package_info">
             <img src="../images/mail_icon.png">
             <p class="title">200 minutes</p>
-            <p class="default_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-              Ipsum
-              has been the industry's standard dummy text ever since the 1500s.</p>
+            <p class="default_text">
+              More minutes for you. In the 20 PLN package, you get 200 minutes to use.
+              The package fee is one-time and will be added to your invoice.</p>
             <div class="bottom_flex_section">
-              <p class="bottom_text package_off">Off</p>
-              <a class="button_more">More info</a>
+              <p><b>20 PLN</b></p>
+              <a class="button_more" v-on:click="buyPackage()"> BUY! </a>
             </div>
           </div>
           <div class="package_info">
             <img src="../images/mail_icon.png">
-            <p class="title">Unlimited</p>
-            <p class="default_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-              Ipsum
-              has been the industry's standard dummy text ever since the 1500s.</p>
+            <p class="title">300 minutes</p>
+            <p class="default_text">
+              More minutes for you. In the 30 PLN package, you get 300 minutes to use.
+              The package fee is one-time and will be added to your invoice.</p>
             <div class="bottom_flex_section">
-              <p class="bottom_text package_on">On</p>
-              <a class="button_more">More info</a>
+              <p><b>30 PLN</b></p>
+              <a class="button_more" v-on:click="buyPackage()"> BUY! </a>
             </div>
           </div>
         </div>
+
+        <div class="separator"></div>
+
+        <p class="bold_title">Internet</p>
+
+       <div class="packages_flex">
+        <div class="package_info">
+          <img src="../images/internet_icon.png">
+          <p class="title">100 MB</p>
+          <p class="default_text">
+            More internet for you. In the 10 PLN package, you get 100MB of internet to use.
+            The package fee is one-time and will be added to your invoice.</p>
+          <div class="bottom_flex_section">
+            <p><b>10 PLN</b></p>
+            <a class="button_more" v-on:click="buyPackage()"> BUY! </a>
+          </div>
+        </div>
+        <div class="package_info">
+          <img src="../images/internet_icon.png">
+          <p class="title">200 MB</p>
+          <p class="default_text">
+            More internet for you. In the 20 PLN package, you get 200MB of internet to use.
+            The package fee is one-time and will be added to your invoice.</p>
+          <div class="bottom_flex_section">
+            <p><b>20 PLN</b></p>
+            <a class="button_more" v-on:click="buyPackage()"> BUY! </a>
+          </div>
+        </div>
+        <div class="package_info">
+          <img src="../images/internet_icon.png">
+          <p class="title">300 MB</p>
+          <p class="default_text">
+            More internet for you. In the 30 PLN package, you get 300MB of internet to use.
+            The package fee is one-time and will be added to your invoice.</p>
+          <div class="bottom_flex_section">
+            <p><b>30 PLN</b></p>
+            <a class="button_more" v-on:click="buyPackage()"> BUY! </a>
+          </div>
+        </div>
+       </div>
       </div>
       <my-footer/>
     </div>
 </template>
 
 <script>
+
+import Header from "./Header";
+import axios from "axios";
+import endpoint from "../endpoint.json";
+
+
 export default {
-  name: "packages"
-}
+  name: "packages",
+
+  data() {
+      return{
+        components: {
+          'my-header': Header,
+        },
+        dataPackages: 'dsa'
+      }
+
+  },
+
+  methods: {
+
+    buyPackage(){
+
+      axios.post(`${endpoint.url}/packages`, this.dataPackages)
+          .then((response) => {
+            if (response.status === 200) {
+              sessionStorage.setItem('packages', JSON.stringify(response.data))
+            }
+          })
+          .catch(() => {
+            console.log('dsa');
+          });
+    }
+  },
+
+  mounted() {
+
+  },
+};
+
 </script>
 
 <style scoped>
@@ -147,7 +237,7 @@ export default {
 
 /*Bottom packages*/
 .bottom_flex_section {
-  display: flex;
+  display: inline-block;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -191,7 +281,7 @@ export default {
 .button_more {
   background-color: #fff;
   padding: 5px 15px 3px 25px;
-  margin: 10px 0;
+  margin: 10px 190px;
   width: auto;
   color: #91003d;
   font-size: 16px;

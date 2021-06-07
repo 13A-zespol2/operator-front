@@ -2,8 +2,7 @@
   <div id="footer">
 
       <div class="footer_col">
-        <p>Privacy policy</p>
-        <p>Regulations</p>
+        <p>Created By: Wojciech Grelewicz, Dominik Łataś, Paweł Zacharz, Karol Mik</p>
       </div>
 
   </div>
@@ -46,7 +45,8 @@ align-items: center;
   font-weight:500;
 }
 .footer_col p {
-  margin: 0 0 !important;
+  margin-top: 15px;
+  margin-left: 25%;
 }
 
 

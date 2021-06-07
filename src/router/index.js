@@ -46,12 +46,20 @@ const routes = [
         path: '/invoice',
         name: 'invoice',
         component: () => import('../components/Invoice'),
+        beforeEnter: loggedInGuard,
       },
       {
         path: '/packages',
         name: 'packages',
         component: () => import('../components/Packages'),
+        beforeEnter: loggedInGuard,
       },
+  {
+    path: '/numbers',
+    name: 'numbers',
+    component: () => import('../components/Numbers'),
+    beforeEnter: loggedInGuard,
+  },
 
   {
     path: '/register',
