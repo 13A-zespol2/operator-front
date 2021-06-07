@@ -245,13 +245,6 @@ export default {
   margin-top: 10px;
 }
 
-.bottom_text {
-  margin: 0 0 0 20px;
-  font-size: 12px;
-  font-weight: 900;
-  color: black;
-}
-
 .bottom_flex_section .package_off::before {
   content: '';
   position: absolute;

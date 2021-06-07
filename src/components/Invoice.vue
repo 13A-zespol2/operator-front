@@ -8,11 +8,11 @@
           <div class="payment_info_2col">
             <div class="amount">
               <p class="title">Invoice value</p>
-              <p class="bold_title">75.67$</p>
+              <p class="bold_title">75.67 PLN</p>
             </div>
             <div class="invoice_deadline">
-              <p class="title">Invoice deadline</p>
-              <p class="bold_title">6 days</p>
+              <p class="title">Invoice number</p>
+              <p class="bold_title">FV/215123/04/2021</p>
             </div>
           </div>
           <a class="button_payment">Pay now with <img class="payment_logo" src="src/images/payu_logo.png"></a>
@@ -142,30 +142,6 @@
   font-weight: 500;
   margin: 5px;
 }
-
-.button_default {
-  background-color: #fff;
-  padding: 10px 35px;
-  margin: 10px 0;
-  text-align: center;
-  width: 200px;
-  color: #91003d;
-  font-size: 16px;
-  font-weight: 600;
-  margin: 10px auto;
-  transition: .5s ease;
-  box-shadow: 5px 5px 0 0 #91003d, inset 5px 5px 0 0 #91003d;
-}
-
-.button_default:hover {
-  background: transparent;
-  box-shadow: 0 0 0 0 #000, inset 108px 72px 0 0 #000;
-  transition: .5s ease;
-  cursor: pointer;
-  color: white;
-}
-
-
 /*Your offer section*/
 .button_payment {
   display: flex;
@@ -206,14 +182,6 @@
   }
 }
 
-
-.colored_text {
-  text-decoration: underline;
-  color: #91003d;
-  margin: 5px;
-}
-
-
 .panel-ico-title {
   display: flex;
   flex-direction: row;
@@ -246,8 +214,4 @@
   transition: .7s ease;
 }
 
-.icorotation {
-  transform: rotate(180deg);
-  transition: .7s ease;
-}
 </style>

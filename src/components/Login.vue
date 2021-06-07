@@ -25,9 +25,9 @@
             <!--            <button class="button_default" v-on:click="submit">Login</button>-->
           </form>
           <p class="title">OR...</p>
-          <button v-google-signin-button="clientId" class="google-signin-button">Log in with <img class="payment_logo"
+          <button v-google-signin-button="clientId" class="button_default">Log in with <img class="payment_logo"
                                                                                                   src="../images/google_logo.png"></button>
-          <p>No account <span class="colored_text" v-on:click="register">Create one</span></p>
+          <p>No account?<span class="colored_text" v-on:click="register">Create one</span></p>
         </div>
       </div>
     </div>

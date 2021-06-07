@@ -22,8 +22,6 @@
               <div class="pseudo"><input v-model="registerForm.retype" placeholder="Retype Password" type="password" required></div>
               <a class="button_default" name="login" type="submit" v-on:click="register()"> Register </a>
 
-              <a class="button_payment" v-on:click="google">Log in with <img class="payment_logo"
-                                                                             src="../images/google_logo.png"></a>
             </form>
 
           </div>
@@ -65,10 +63,8 @@ export default {
     }
   }
   ,
-  methods:
-      {
+  methods: {
         register() {
-
           this.$v.registerForm.$touch();
           if (this.$v.registerForm.$error) {
             return
@@ -88,21 +84,7 @@ export default {
                 })
           }
         },
-
-        google() {
-          axios.get(`${endpoint.url}/oauth2/authorization/google`)
-              .then((response) => {
-                if (response.status === 200) {
-                  sessionStorage.setItem('loggedIn', this.login);
-                  this.$router.push("dashboard")
-                }
-              })
-              .catch(() => {
-                this.info = 'Niepoprawne dane do logowania';
-              });
-        },
       }
-
 }
 </script>
 
@@ -134,30 +116,6 @@ export default {
   justify-content: center;
 }
 
-.title {
-  font-family: cg;
-  font-size: 20px;
-  color: #393939;
-  font-weight: 600;
-  margin: 5px;
-}
-
-.bold_title {
-  font-family: cg;
-  font-size: 32px;
-  color: #91003d;
-  font-weight: 800;
-  margin: 10px;
-}
-
-.default_text {
-  font-family: cg;
-  font-size: 16px;
-  color: #484848;
-  font-weight: 500;
-  margin: 5px;
-}
-
 .button_default {
   background-color: #fff;
   padding: 15px 35px;
@@ -177,38 +135,6 @@ export default {
   transition: .5s ease;
   cursor: pointer;
   color: white;
-}
-
-.colored_text {
-  text-decoration: underline;
-  color: #91003d;
-  margin: 5px;
-}
-
-.separator {
-  width: 100%;
-  height: 50px;
-}
-
-.default_text {
-  text-align: justify;
-}
-
-/*Bottom packages*/
-.bottom_flex_section {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-  margin-top: 10px;
-}
-
-.bottom_text {
-  margin: 0 0 0 20px;
-  font-size: 12px;
-  font-weight: 900;
-  color: black;
 }
 
 .register_form {

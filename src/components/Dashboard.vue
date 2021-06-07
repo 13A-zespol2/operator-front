@@ -15,19 +15,19 @@
             <div class="user_data_info">
 
               <div class="user_numbers">
-                <p class="title"> Your main number</p>
+                <p class="bold_title"> Your main number</p>
                 <p class="bold_title">+48 {{}}</p>
-                <p class="colored_text" v-on:click="changeRoute('/numbers')">Your other numbers</p>
-                <p class="colored_text">Register new number</p>
+                <a class="colored_text" v-on:click="changeRoute('/numbers')">Your other numbers</a>
+                <a class="colored_text">Register new number</a>
               </div>
 
               <div class="last_invoice">
                 <p class="title"> Last invoice</p>
-                <p class="bold_title">75.67$</p>
+                <p class="bold_title">75.67 PLN</p>
                 <p class="default_text">Document number: <b>FV/24561234132/05/2021</b></p>
-                <p class="colored_text" v-on:click="changeRoute('/invoice')">Your invoices</p>
                 <p class="default_text">Payable to: <b>19.05.2021</b></p>
                 <p class="default_text" style="color:red;font-weight:700;">Not paid yet 🙄</p>
+                <a class="colored_text" v-on:click="changeRoute('/invoice')">Your invoices</a>
               </div>
             </div>
           </div>
@@ -121,7 +121,7 @@ export default {
   background-color: #fff;
 }
 
-.user_packages, .last_invoice, .user_numbers {
+.last_invoice, .user_numbers {
   box-shadow: -5px 5px 20px 1px #ddd;
   padding: 30px;
   border-radius: 5px;
@@ -134,7 +134,7 @@ export default {
 
 }
 
-.user_packages, .user_numbers {
+.user_numbers {
   margin-bottom: 20px;
 }
 
@@ -171,54 +171,6 @@ export default {
   font-weight: 500;
   margin: 5px;
 }
-
-.button_default {
-  background-color: #fff;
-  padding: 10px 35px;
-  margin: 10px 0;
-  text-align: center;
-  width: 200px;
-  color: #91003d;
-  font-size: 16px;
-  font-weight: 600;
-  margin: 10px auto;
-  transition: .5s ease;
-  box-shadow: 5px 5px 0 0 #91003d, inset 5px 5px 0 0 #91003d;
-}
-
-.button_default:hover {
-  background: transparent;
-  box-shadow: 0 0 0 0 #000, inset 108px 72px 0 0 #000;
-  transition: .5s ease;
-  cursor: pointer;
-  color: white;
-}
-
-
-/*Your offer section*/
-.button_payment {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-  border: 5px solid #91003d;
-  width: 100%;
-  margin-top: 20px;
-  padding: 10px 30px;
-  font-weight: 900;
-  animation: pulse 3s infinite;
-}
-
-.button_payment:hover {
-  transform: translateY(-3px);
-}
-
-.payment_logo {
-  width: 50px;
-}
-
-
 @keyframes pulse {
   0% {
     transform: scale(0.95);
@@ -237,6 +189,7 @@ export default {
   text-decoration: underline;
   color: #91003d;
   margin: 5px;
+  width: 50%;
 }
 
 </style>
