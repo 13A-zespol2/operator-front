@@ -5,7 +5,7 @@
         <p class="bold_title">SMS</p>
         <div class="packages_flex">
           <div class="package_info">
-            <img src="../images/telephone_icon.png">
+            <img src="../images/mail_icon.png">
             <p class="title">100 SMS</p>
             <p class="default_text">
               More SMS for you. In the 10 PLN package, you get 100 SMS to use.
@@ -17,7 +17,7 @@
             </div>
           </div>
           <div class="package_info">
-            <img src="../images/telephone_icon.png">
+            <img src="../images/mail_icon.png">
             <p class="title">200 SMS</p>
             <p class="default_text">
               More SMS for you. In the 20 PLN package, you get 200 SMS to use.
@@ -45,7 +45,7 @@
         <p class="bold_title">Minutes</p>
         <div class="packages_flex">
           <div class="package_info">
-            <img src="../images/mail_icon.png">
+            <img src="../images/telephone_icon.png">
             <p class="title">100 minutes</p>
             <p class="default_text">
               More minutes for you. In the 10 PLN package, you get 100 minutes to use.
@@ -57,7 +57,7 @@
             </div>
           </div>
           <div class="package_info">
-            <img src="../images/mail_icon.png">
+            <img src="../images/telephone_icon.png">
             <p class="title">200 minutes</p>
             <p class="default_text">
               More minutes for you. In the 20 PLN package, you get 200 minutes to use.
@@ -68,7 +68,7 @@
             </div>
           </div>
           <div class="package_info">
-            <img src="../images/mail_icon.png">
+            <img src="../images/telephone_icon.png">
             <p class="title">300 minutes</p>
             <p class="default_text">
               More minutes for you. In the 30 PLN package, you get 300 minutes to use.
@@ -197,6 +197,7 @@ export default {
   top: 40px;
   right: 10px;
   opacity: 0.05;
+  pointer-events: none;
 }
 
 

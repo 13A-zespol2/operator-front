@@ -16,7 +16,7 @@
 
               <div class="user_numbers">
                 <p class="bold_title"> Your main number</p>
-                <p class="bold_title">+48 {{}}</p>
+                <p class="bold_title">+48 {{this.mainNumber}}</p>
                 <a class="colored_text" v-on:click="changeRoute('/numbers')">Your other numbers</a>
                 <a class="colored_text">Register new number</a>
               </div>
@@ -56,6 +56,8 @@ export default {
         'my-login': Login,
       },
       dataFromSession: [],
+      phoneNumbers:[],
+      mainNumber:'',
     };
 
   },
@@ -75,16 +77,16 @@ export default {
     },
 
     getDataToDashboard() {
-      //const sessUser = JSON.parse(sessionStorage.getItem('loggedIn'));
       this.dataFromSession = JSON.parse(sessionStorage.getItem('loggedIn'));
-    /*  let userSes = {
-        email: sessUser.email
-      } */
-      console.log(this.dataFromSession)
+
       axios.post(`${endpoint.url}/dashboard`, this.dataFromSession)
           .then((response) => {
             if (response.status === 200) {
-              console.log(response.data)
+              console.log(response.data);
+              this.phoneNumbers = response.data.phoneNumberList;
+              this.mainNumber = this.phoneNumbers[0];
+              this.mainNumber = this.mainNumber.match(/.{1,3}/g).join(' ')
+              sessionStorage.setItem('numbers', JSON.stringify(this.phoneNumbers));
             }
           })
           .catch(() => {

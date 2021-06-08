@@ -6,18 +6,18 @@
         <p class="bold_title">Here you can see all of your numbers:</p>
       </div>
 
-      <div class="flexbox_vertical">
+      <div class="flexbox_vertical" v-for="(number, index) in numbersData" :key="'number'+index">
         <div class="numbers_container">
           <div class="usage_data">
-            <p class="number_default"><span>📞</span> 721 559 456</p>
+            <p class="number_default"><span>📞</span> +48 {{number.phoneNumber.number.match(/.{1,3}/g).join(' ')}}</p>
             <div class="usage_table">
               <div class="usage_table_row">
                 <div class="usage_table_col head">Calls</div>
                 <div class="usage_table_col head">Messages</div>
                 <div class="usage_table_col head">Internet</div>
-                <div class="usage_table_col">Used 55 of 200 minutes</div>
-                <div class="usage_table_col">Used 55 of 200 SMS</div>
-                <div class="usage_table_col">Used 55 of 200 MBs</div>
+                <div class="usage_table_col">{{number.balanceMinutes}}</div>
+                <div class="usage_table_col">{{number.smsBalance}}</div>
+                <div class="usage_table_col">{{number.balanceInternet}}</div>
               </div>
             </div>
           </div>
@@ -27,8 +27,8 @@
           <div class="pin_change">
             <p class="text_default">Change your PIN 🔒</p>
             <p class="pin_validation">If you want to change your PIN Code, you have to use 4 - 8 characters and only digits.</p>
-            <input type="password" class="input_default" placeholder="Text your PIN here">
-            <input type="submit" class="button_default" value="Change">
+                <input v-on:input="log($event.target.value, $event.target.name)" type="text" class="input_default" placeholder="Text your PIN here">
+            <button type="submit" class="button_default" @click="changePinForNumber(number.phoneNumber.number)"> Change</button>
           </div>
         </div>
       </div>
@@ -38,8 +38,68 @@
 </template>
 
 <script>
+import Header from "./Header";
+import Login from "./Login";
+import axios from "axios";
+import $ from 'jquery';
+import endpoint from "../endpoint.json";
+
 export default {
-  name: "Numbers"
+  name: "Numbers",
+
+  data() {
+    return {
+      components: {
+        'my-header': Header,
+        'my-login': Login,
+      },
+      dataFromSession: [],
+      numbersData: [],
+      fields: {
+        number:'',
+        pin: '',
+      }
+    };
+
+  },
+
+  mounted() {
+    this.getDataFromSession();
+  },
+
+  methods: {
+    getDataFromSession() {
+      this.dataFromSession = JSON.parse(sessionStorage.getItem('loggedIn'));
+      axios.post(`${endpoint.url}/numbers`, this.dataFromSession)
+          .then((response) => {
+            if (response.status === 200) {
+              console.log(response.data);
+              this.numbersData = response.data;
+            }
+          })
+          .catch(() => {
+            this.info = 'Niepoprawne dane do logowania';
+          });
+
+    },
+    changePinForNumber(number) {
+      axios.put(`${endpoint.url}/numbers/${number}/${this.fields.pin}`)
+          .then((response) => {
+            if (response.status === 200) {
+              console.log('Zmieniono pin');
+            }
+          })
+          .catch(() => {
+            console.log('nie poszlo');
+          });
+      $('input').val('');
+      this.fields.pin = '';
+      this.fields.name = '';
+    },
+    log(item) {
+      this.fields.pin = item;
+    }
+  }
 }
 </script>
 
