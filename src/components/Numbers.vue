@@ -68,6 +68,7 @@ export default {
   },
 
   methods: {
+
     getDataFromSession() {
       this.dataFromSession = JSON.parse(sessionStorage.getItem('loggedIn'));
       axios.post(`${endpoint.url}/numbers`, this.dataFromSession)

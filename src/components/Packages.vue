@@ -3,42 +3,21 @@
       <my-header/>
       <div class="container">
         <p class="bold_title">SMS</p>
-        <div class="packages_flex">
-          <div class="package_info">
+        <div class="packages_flex" >
+          <div class="package_info" v-for="(pack, index) in allPackages" :key="'pack'+index">
+            <div v-bind:id="pack.namePackage">
             <img src="../images/mail_icon.png">
-            <p class="title">100 SMS</p>
+            <p class="title">{{pack.namePackage}}</p>
             <p class="default_text">
-              More SMS for you. In the 10 PLN package, you get 100 SMS to use.
-              The package fee is one-time and will be added to your invoice. </p>
+            {{pack.description}}
+            </p>
 
             <div class="bottom_flex_section">
-              <p><b>10 PLN</b></p>
+              <p><b>{{ pack.price }} PLN</b></p>
               <a class="button_more" v-on:click="buyPackage()"> BUY! </a>
             </div>
           </div>
-          <div class="package_info">
-            <img src="../images/mail_icon.png">
-            <p class="title">200 SMS</p>
-            <p class="default_text">
-              More SMS for you. In the 20 PLN package, you get 200 SMS to use.
-              The package fee is one-time and will be added to your invoice.</p>
-            <div class="bottom_flex_section">
-              <p><b>20 PLN</b></p>
-              <a class="button_more" v-on:click="buyPackage()"> BUY! </a>
-            </div>
           </div>
-          <div class="package_info">
-            <img src="../images/mail_icon.png">
-            <p class="title">300 SMS</p>
-            <p class="default_text">
-              More SMS for you. In the 30 PLN package, you get 300 SMS to use.
-              The package fee is one-time and will be added to your invoice.</p>
-            <div class="bottom_flex_section">
-              <p><b>30 PLN</b></p>
-              <a class="button_more" v-on:click="buyPackage()"> BUY! </a>
-            </div>
-          </div>
-        </div>
 
         <div class="separator"></div>
 
@@ -56,29 +35,6 @@
               <a class="button_more" v-on:click="buyPackage()"> BUY! </a>
             </div>
           </div>
-          <div class="package_info">
-            <img src="../images/telephone_icon.png">
-            <p class="title">200 minutes</p>
-            <p class="default_text">
-              More minutes for you. In the 20 PLN package, you get 200 minutes to use.
-              The package fee is one-time and will be added to your invoice.</p>
-            <div class="bottom_flex_section">
-              <p><b>20 PLN</b></p>
-              <a class="button_more" v-on:click="buyPackage()"> BUY! </a>
-            </div>
-          </div>
-          <div class="package_info">
-            <img src="../images/telephone_icon.png">
-            <p class="title">300 minutes</p>
-            <p class="default_text">
-              More minutes for you. In the 30 PLN package, you get 300 minutes to use.
-              The package fee is one-time and will be added to your invoice.</p>
-            <div class="bottom_flex_section">
-              <p><b>30 PLN</b></p>
-              <a class="button_more" v-on:click="buyPackage()"> BUY! </a>
-            </div>
-          </div>
-        </div>
 
         <div class="separator"></div>
 
@@ -96,31 +52,12 @@
             <a class="button_more" v-on:click="buyPackage()"> BUY! </a>
           </div>
         </div>
-        <div class="package_info">
-          <img src="../images/internet_icon.png">
-          <p class="title">200 MB</p>
-          <p class="default_text">
-            More internet for you. In the 20 PLN package, you get 200MB of internet to use.
-            The package fee is one-time and will be added to your invoice.</p>
-          <div class="bottom_flex_section">
-            <p><b>20 PLN</b></p>
-            <a class="button_more" v-on:click="buyPackage()"> BUY! </a>
-          </div>
-        </div>
-        <div class="package_info">
-          <img src="../images/internet_icon.png">
-          <p class="title">300 MB</p>
-          <p class="default_text">
-            More internet for you. In the 30 PLN package, you get 300MB of internet to use.
-            The package fee is one-time and will be added to your invoice.</p>
-          <div class="bottom_flex_section">
-            <p><b>30 PLN</b></p>
-            <a class="button_more" v-on:click="buyPackage()"> BUY! </a>
-          </div>
-        </div>
-       </div>
       </div>
+
       <my-footer/>
+           </div>
+        </div>
+      </div>
     </div>
 </template>
 
@@ -129,6 +66,8 @@
 import Header from "./Header";
 import axios from "axios";
 import endpoint from "../endpoint.json";
+//import $ from 'jquery';
+
 
 
 export default {
@@ -139,29 +78,48 @@ export default {
         components: {
           'my-header': Header,
         },
-        dataPackages: 'dsa'
+        allPackages: [],
+        dataNumbers: [],
+        number: '789789789',
       }
+  },
+
+  mounted() {
+    this.getDataToPackages();
 
   },
 
   methods: {
 
-    buyPackage(){
-
-      axios.post(`${endpoint.url}/packages`, this.dataPackages)
+    getDataToPackages() {
+      this.dataNumbers = JSON.parse(sessionStorage.getItem('numbers'));
+      axios.get(`${endpoint.url}/packages`)
           .then((response) => {
             if (response.status === 200) {
-              sessionStorage.setItem('packages', JSON.stringify(response.data))
+              console.log(response.data);
+              this.allPackages = response.data;
+             /* $(document).ready(function(){
+                $('<p>aaaa</p>').insertBefore('.package_info');
+              });*/
             }
           })
           .catch(() => {
-            console.log('dsa');
+            console.log('err');
+          });
+    },
+
+
+    buyPackage(number, aPackage){
+      axios.post(`${endpoint.url}/packages/${number}/${aPackage}`, this.number)
+          .then((response) => {
+            if (response.status === 200) {
+              console.log('kupiono');
+            }
+          })
+          .catch(() => {
+            console.log('nie kupiono');
           });
     }
-  },
-
-  mounted() {
-
   },
 };
 
