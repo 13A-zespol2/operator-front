@@ -22,7 +22,7 @@
             </div>
 
           </div>
-          <GooglePay />
+          <GooglePay></GooglePay>
         </div>
         <div class="payment_info"  v-else-if="invoiceInf.invoiceStatusEnum==='PAID'" >
 
@@ -73,10 +73,11 @@ import axios from "axios";
 import endpoint from "../endpoint.json";
 import Header from "@/components/Header";
 import Login from "@/components/Login";
-import GooglePay from "@/components/GooglePay";
 
 export default {
-  components: {GooglePay},
+  components: {
+    GooglePay: () => import('@/components/GooglePay')
+  },
   data() {
     return {
       components: {
@@ -128,7 +129,7 @@ export default {
   justify-content: space-around;
   flex-direction: row;
   width: 100%;
-  margin: 0 10px;
+  margin: 0 10px 30px;
 }
 
 .payment_info {

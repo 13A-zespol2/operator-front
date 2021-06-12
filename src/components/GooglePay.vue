@@ -1,5 +1,4 @@
 <template>
-  <div class="example">
     <google-pay-button
         environment="TEST"
         v-bind:button-type="buttonType"
@@ -23,7 +22,6 @@
         v-on:error="onError"
         v-bind:onPaymentAuthorized.prop="onPaymentDataAuthorized"
     ></google-pay-button>
-  </div>
 </template>
 
 
