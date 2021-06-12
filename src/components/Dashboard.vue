@@ -18,7 +18,7 @@
                 <p class="bold_title"> Your main number</p>
                 <p class="bold_title">+48 {{this.mainNumber}}</p>
                 <a class="colored_text" v-on:click="changeRoute('/numbers')">Your other numbers</a>
-                <a class="colored_text">Register new number</a>
+                <a class="colored_text" v-on:click="generateNewNumber()">Register new number</a>
               </div>
 
               <div class="last_invoice">
@@ -76,6 +76,19 @@ export default {
       });
     },
 
+    generateNewNumber() {
+      axios.post(`${endpoint.url}/dashboard/registerNewNumber`, this.dataFromSession)
+          .then((response) => {
+            if (response.status === 200) {
+              console.log("dodano nr");
+              this.$router.go(0);
+            }
+          })
+          .catch(() => {
+            this.info = 'Niepoprawne dane do logowania';
+          });
+    },
+
     getDataToDashboard() {
       this.dataFromSession = JSON.parse(sessionStorage.getItem('loggedIn'));
 
@@ -87,6 +100,7 @@ export default {
               this.mainNumber = this.phoneNumbers[0];
               this.mainNumber = this.mainNumber.match(/.{1,3}/g).join(' ')
               sessionStorage.setItem('numbers', JSON.stringify(this.phoneNumbers));
+
             }
           })
           .catch(() => {

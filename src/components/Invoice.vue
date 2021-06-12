@@ -29,7 +29,12 @@
       <div class="flexbox_horizontal">
         <div class="invoices">
           <p class="bold_title">Paid invoices</p>
-          <p class="default_text">You don't have paid invoices yet 😕</p>
+          <div aria-labelledby="heading<?php echo $c ?>" class="panel-collapse collapse" role="tabpanel">
+          <div class="panel-ico-title">
+            <h4 class="panel-title">FV/215123/04/2021</h4>
+            <i class="fas fa-chevron-up"></i>
+          </div>
+            </div>
         </div>
       </div>
 

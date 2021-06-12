@@ -2,8 +2,7 @@
     <div class="main">
       <my-header/>
       <div class="container">
-        <span>Selected: {{ selected_option }}</span>
-        <div class="number_to_set">
+       <div class="number_to_set">
           <select name="phones" id="phones" v-model="selected_option">
             <option v-for="(number, index) in dataNumbers" :key="'number'+index" >{{number}}</option>
           </select>
@@ -21,7 +20,7 @@
 
             <div class="bottom_flex_section">
               <p><b>{{ pack.price }} PLN</b></p>
-              <a class="button_more" v-on:click="buyPackage()"> BUY! </a>
+              <a class="button_more" v-on:click="buyPackage(selected_option, pack.namePackage)"> BUY! </a>
             </div>
           </div>
           </div>
@@ -54,7 +53,7 @@ export default {
         dataNumbers: [],
         numbersData: [],
         selected_option:'',
-        number: '789789789',
+        package: [],
       }
   },
 
@@ -67,6 +66,7 @@ export default {
 
     getDataToPackages() {
       this.dataNumbers = JSON.parse(sessionStorage.getItem('numbers'));
+      console.log(this.dataNumbers);
       axios.get(`${endpoint.url}/packages`)
           .then((response) => {
             if (response.status === 200) {
@@ -89,7 +89,8 @@ export default {
 
 
     buyPackage(number, aPackage){
-      axios.post(`${endpoint.url}/packages/${number}/${aPackage}`, this.number)
+
+      axios.post(`${endpoint.url}/packages/${number}/${aPackage}`)
           .then((response) => {
             if (response.status === 200) {
               console.log('kupiono');
