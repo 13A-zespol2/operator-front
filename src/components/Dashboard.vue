@@ -21,12 +21,21 @@
                 <a class="colored_text">Register new number</a>
               </div>
 
-              <div class="last_invoice">
+              <div class="last_invoice" >
                 <p class="title"> Last invoice</p>
-                <p class="bold_title">{{ this.invoiceInf.slice(-1)[0].price }} PLN</p>
-                <p class="default_text">Document number: <b>{{this.invoiceInf.slice(-1)[0].invoiceNumber}}</b></p>
-                <p class="default_text">Payable to: <b><span>{{this.date | formatDate}}</span></b></p>
-                <a class="colored_text" v-on:click="changeRoute('/invoice')">Your invoices</a>
+                <div v-if="this.oneInvoice !== null">
+                  <p class="bold_title" > {{this.oneInvoice.price}} PLN</p>
+                  <p class="default_text">Document number: <b>{{this.oneInvoice.invoiceNumber}}</b></p>
+                  <p class="default_text">Payable to: <b><span>{{this.date | formatDate}}</span></b></p>
+                  <p class="default_text"></p>
+                  <a class="colored_text" v-on:click="changeRoute('/invoice')">Your invoices</a>
+                </div>
+                <div v-else>
+                  <p class="default_text">You dont have any invoice</p>
+                </div>
+
+
+
               </div>
             </div>
           </div>
@@ -43,8 +52,10 @@
 <script>
 import Header from '../components/Header'
 import Login from '../components/Login'
+import Invoice from "@/components/Invoice";
 import axios from "axios";
 import endpoint from "../endpoint.json";
+
 
 import moment from 'moment';
 import Vue from "vue";
@@ -66,7 +77,7 @@ export default {
       dataFromSession: [],
       phoneNumbers:[],
       mainNumber:'',
-      invoiceInf: [],
+      oneInvoice: [],
       date: '',
       newD: ''
     };
@@ -74,7 +85,8 @@ export default {
   },
 
   mounted() {
-    this.getDataToDashboard()
+    this.getDataToDashboard();
+
   },
 
   methods: {
@@ -89,16 +101,16 @@ export default {
 
     getDataToDashboard() {
       this.dataFromSession = JSON.parse(sessionStorage.getItem('loggedIn'));
-      this.invoiceInf = JSON.parse(sessionStorage.getItem('invoices'));
+      //this.invoiceInf = JSON.parse(sessionStorage.getItem('invoices'));
 
       axios.post(`${endpoint.url}/dashboard`, this.dataFromSession)
           .then((response) => {
             if (response.status === 200) {
-              console.log(response.data);
               this.phoneNumbers = response.data.phoneNumberList;
               this.mainNumber = this.phoneNumbers[0];
+              this.oneInvoice = response.data.invoices;
               this.mainNumber = this.mainNumber.match(/.{1,3}/g).join(' ')
-              const date = new Date(this.invoiceInf.slice(-1)[0].dateInvoice);
+              const date = new Date(this.oneInvoice.dateInvoice);
               this.date = this.addDays(date, 7);
               sessionStorage.setItem('numbers', JSON.stringify(this.phoneNumbers));
             }

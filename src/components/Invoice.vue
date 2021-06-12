@@ -24,7 +24,7 @@
           </div>
           <a class="button_payment">Pay now with <img class="payment_logo" src="src/images/payu_logo.png"></a>
         </div>
-        <div class="payment_info"  v-else-if="invoiceInf.invoiceStatusEnum==='PAID'">
+        <div class="payment_info"  v-else-if="invoiceInf.invoiceStatusEnum==='PAID'" >
 
         </div>
           <div class="bank_info">
@@ -104,7 +104,10 @@ export default {
       .catch(()=>{
         this.info = 'Lipa';
       })
-    }
+    },
+
+
+
   }
 
 }
