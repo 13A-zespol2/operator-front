@@ -5,7 +5,7 @@
       <div class="flexbox_horizontal">
         <p class="bold_title">Here you can see all of your numbers:</p>
       </div>
-
+      <div style="position: fixed; z-index: 9999999"><FlashMessage :position="'right top'"></FlashMessage></div>
       <div class="flexbox_vertical" v-for="(number, index) in numbersData" :key="'number'+index">
         <div class="numbers_container">
           <div class="usage_data">
@@ -87,11 +87,31 @@ export default {
       axios.put(`${endpoint.url}/numbers/${number}/${this.fields.pin}`)
           .then((response) => {
             if (response.status === 200) {
-              console.log('Zmieniono pin');
+              this.flashMessage.success({
+                status: 'success',
+                title: 'Success!',
+                message: 'PIN changed successfully!',
+                time: 2000,
+              })
             }
           })
           .catch(() => {
-            console.log('nie poszlo');
+            if(this.fields.pin === ''){
+              this.flashMessage.warning({
+                status: 'warning',
+                title: 'Warning!',
+                message: 'Field is empty!',
+                time: 2000,
+              })
+            }else{
+              this.flashMessage.error({
+                status: 'error',
+                title: 'Error!',
+                message: 'Failed to change PIN',
+                time: 2000,
+              })
+            }
+
           });
       $('input').val('');
       this.fields.pin = '';

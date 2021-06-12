@@ -1,6 +1,7 @@
 <template>
     <div class="main">
       <my-header/>
+      <FlashMessage :position="'right top'"></FlashMessage>
       <div class="container">
        <div class="number_to_set">
           <select name="phones" id="phones" v-model="selected_option">
@@ -83,7 +84,7 @@ export default {
             }
           })
           .catch(() => {
-            console.log('err');
+
           });
     },
 
@@ -93,11 +94,23 @@ export default {
       axios.post(`${endpoint.url}/packages/${number}/${aPackage}`)
           .then((response) => {
             if (response.status === 200) {
-              console.log('kupiono');
+              this.flashMessage.success({
+                status: 'success',
+                title: 'Success!',
+                message: 'You bought package for number '+this.selected_option,
+                time: 2000,
+              })
             }
           })
           .catch(() => {
-            console.log('nie kupiono');
+            if(this.selected_option === ''){
+              this.flashMessage.warning({
+                status: 'warning',
+                title: 'Warning',
+                message: 'Please choose your number!',
+                time: 2000,
+              })
+            }
           });
     }
   },

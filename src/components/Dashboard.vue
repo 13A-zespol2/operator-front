@@ -3,8 +3,9 @@
     <my-header/>
 
     <div id="container">
-
+      <FlashMessage :position="'right top'"></FlashMessage>
       <div class="main">
+
         <div class="container">
           <div class="flexbox_horizontal">
             <div class="phone_info">
@@ -80,12 +81,22 @@ export default {
       axios.post(`${endpoint.url}/dashboard/registerNewNumber`, this.dataFromSession)
           .then((response) => {
             if (response.status === 200) {
-              console.log("dodano nr");
+              this.flashMessage.success({
+                status: 'success',
+                title: 'Success!',
+                message: 'Phone number successfully generated!',
+                time: 2000,
+              })
               this.$router.go(0);
             }
           })
           .catch(() => {
-            this.info = 'Niepoprawne dane do logowania';
+            this.flashMessage.info({
+              status: 'info',
+              title: 'Info!',
+              message: 'The maximum phone number to generate is 3!',
+              time: 2000,
+            })
           });
     },
 
