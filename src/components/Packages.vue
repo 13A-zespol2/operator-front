@@ -1,10 +1,10 @@
 <template>
     <div class="main">
       <my-header/>
-      <FlashMessage :position="'right top'"></FlashMessage>
       <div class="container">
        <div class="number_to_set">
           <select name="phones" id="phones" v-model="selected_option">
+            <option value="" disabled selected>Choose your number.</option>
             <option v-for="(number, index) in dataNumbers" :key="'number'+index" >{{number}}</option>
           </select>
         </div>
@@ -25,10 +25,9 @@
             </div>
           </div>
           </div>
-
-            <div class="separator"></div>
            </div>
         </div>
+      <FlashMessage :position="'right top'"></FlashMessage>
       <my-footer/>
       </div>
 </template>
@@ -75,8 +74,8 @@ export default {
               console.log(response.data);
               this.allPackages = response.data;
               $(document).ready(function(){
-                $('<div style="display: flex;flex-direction: row;flex-wrap: wrap;width: 100%;padding-bottom:50px;position: relative;" class="packages_flex" id="minutes_flex">').insertAfter($('.packages_flex'));
-                $('<div style="display: flex;flex-direction: row;flex-wrap: wrap;width: 100%;padding-bottom:50px;position: relative;" class="packages_flex" id="internet_flex">').insertAfter($('.packages_flex'));
+                $('<div style="display: flex;justify-content: center;flex-direction: row;flex-wrap: nowrap;width: 100%;padding-bottom:50px;position: relative;" class="packages_flex" id="minutes_flex">').insertAfter($('.packages_flex'));
+                $('<div style="display: flex;justify-content: center;flex-direction: row;flex-wrap: nowrap;width: 100%;padding-bottom:50px;position: relative;" class="packages_flex" id="internet_flex">').insertAfter($('.packages_flex'));
                 $('.MINUTES').parent().appendTo('#minutes_flex');
                 $('.INTERNET').parent().appendTo('#internet_flex');
                 $('<p style="font-family: cg;font-size: 32px;color: #91003d;font-weight: 800;margin: 10px;" class="bold_title">MINUTES</p>').insertBefore($('#minutes_flex'));
@@ -99,7 +98,7 @@ export default {
                 status: 'success',
                 title: 'Success!',
                 message: 'You bought package for number '+this.selected_option,
-                time: 2000,
+                time: 2000
               })
             }
           })
@@ -109,7 +108,7 @@ export default {
                 status: 'warning',
                 title: 'Warning',
                 message: 'Please choose your number!',
-                time: 2000,
+                time: 2000
               })
             }
           });
@@ -120,16 +119,18 @@ export default {
 </script>
 
 <style scoped>
-
 select{
   width: 300px;
   background: #FFFFFF;
   border: 1px solid #E0E0E0;
   box-sizing: border-box;
-  box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 10px 0px #91003d;
   border-radius: 5px;
   padding: 14px 25px;
   margin:40px 10px;
+}
+select:hover{
+  cursor: pointer;
 }
 select:focus{
   outline: none;
@@ -137,23 +138,21 @@ select:focus{
 .packages_flex {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   justify-content: center;
   width: 100%;
   position: relative;
+  padding-bottom:50px;
 }
 
 
 .package_info {
   display: flex;
   justify-content: space-between;
-  flex-direction: column;
   border-radius: 5px;
-  width: 31%;
-  justify-content: flex-start !important;
+  width: 100%;
   padding: 30px 20px 20px;
-  margin: 10px;
-  box-shadow: -5px 5px 20px 1px #ddd;
+  margin: 15px;
+  box-shadow: 7px 7px 15px 7px #ccc;
   background-color: #fff;
   position: relative;
 }
@@ -260,5 +259,4 @@ select:focus{
   cursor: pointer;
   color: white;
 }
-
 </style>

@@ -7,15 +7,15 @@
             <FlashMessage :position="'right top'"></FlashMessage>
             <form class="register_form">
 
-              <div class="logo" style="margin-bottom:20px;">
+              <div class="logo">
                 <a v-on:click="$router.push('/')"><img class="logo_img" src="../images/logo.png"></a>
               </div>
               <div class="pseudo"><input v-model="registerForm.name" placeholder="Name" type="text" required></div>
               <div class="pseudo"><input v-model="registerForm.surname" placeholder="Surname" type="text" required></div>
               <div class="pseudo"><input v-model="registerForm.email" placeholder="E-mail" type="email" required></div>
               <div class="pseudo"><input v-model="registerForm.password" placeholder="Password" type="password" required></div>
-              <password-meter class ="pass" :password="registerForm.password"/>
               <div class="pseudo"><input v-model="registerForm.retype" placeholder="Retype Password" type="password" required></div>
+              <password-meter class ="pass" :password="registerForm.password"/>
               <a class="button_default" name="login" type="submit" v-on:click="register()"> Register </a>
 
             </form>
@@ -100,6 +100,7 @@ export default {
 .pass{
   height: 7px;
   width: 100%;
+  margin-top:15px;
 }
 
 .register_container {
@@ -126,7 +127,7 @@ export default {
 .button_default {
   background-color: #fff;
   padding: 15px 35px;
-  margin: 10px 0;
+  margin: 30px 0 0;
   text-align: center;
   width: 200px;
   color: #393939;
@@ -175,10 +176,14 @@ export default {
 .pseudo input {
   width: 100%;
   outline: none;
+  margin-top:10px;
   font-family: cg;
   font-size: 20px;
   color: #393939;
   font-weight: 600;
+}
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #fafafa inset;
 }
 
 .pseudo:before, .pseudo:after {

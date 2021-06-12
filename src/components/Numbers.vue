@@ -15,9 +15,9 @@
                 <div class="usage_table_col head">Calls</div>
                 <div class="usage_table_col head">Messages</div>
                 <div class="usage_table_col head">Internet</div>
-                <div class="usage_table_col">{{number.balanceMinutes}}</div>
-                <div class="usage_table_col">{{number.smsBalance}}</div>
-                <div class="usage_table_col">{{number.balanceInternet}}</div>
+                <div class="usage_table_col">You have <span class="colored">{{number.balanceMinutes}} minutes</span> left.</div>
+                <div class="usage_table_col">You have <span class="colored">{{number.smsBalance}} SMS</span> left.</div>
+                <div class="usage_table_col">You have <span class="colored">{{number.balanceInternet}} MB</span> left.</div>
               </div>
             </div>
           </div>
@@ -26,8 +26,8 @@
 
           <div class="pin_change">
             <p class="text_default">Change your PIN 🔒</p>
-            <p class="pin_validation">If you want to change your PIN Code, you have to use 4 - 8 characters and only digits.</p>
-                <input v-on:input="log($event.target.value, $event.target.name)" type="text" class="input_default" placeholder="Text your PIN here">
+            <p class="pin_validation">If you want to change your PIN Code, you have to use between 4 and 8 characters and only digits.</p>
+                <input v-on:input="log($event.target.value, $event.target.name)" type="password" class="input_default" placeholder="Text your PIN here">
             <button type="submit" class="button_default" @click="changePinForNumber(number.phoneNumber.number)"> Change</button>
           </div>
         </div>
@@ -43,6 +43,13 @@ import Login from "./Login";
 import axios from "axios";
 import $ from 'jquery';
 import endpoint from "../endpoint.json";
+
+$(document).on('keypress', 'input', function(){
+  if($('.input_default').val().length > 7){
+    console.log($('.input_default').val().length);
+    event.preventDefault();
+  }
+});
 
 export default {
   name: "Numbers",
@@ -84,6 +91,15 @@ export default {
 
     },
     changePinForNumber(number) {
+      if($('.input_default').val().length < 4 && $('.input_default').val().length > 0){
+        this.flashMessage.error({
+          status: 'error',
+          title: 'Error!',
+          message: 'PIN too short!',
+          time: 2000,
+        });
+        return false;
+      }
       axios.put(`${endpoint.url}/numbers/${number}/${this.fields.pin}`)
           .then((response) => {
             if (response.status === 200) {
@@ -125,11 +141,12 @@ export default {
 </script>
 
 <style scoped>
+.colored{
+  font-weight: 600;
+  color: #91003d;
+}
 
 .flexbox_horizontal{
-  display:flex;
-  flex-direction:column;
-  width:100%;
   margin-bottom:60px;
 }
 
@@ -141,7 +158,7 @@ export default {
   border-radius:5px;
   width:auto;
   padding:40px;
-  box-shadow: -5px 5px 20px 1px #ddd;
+  box-shadow: 7px 7px 15px 7px #ddd;
   background-color: #fff;
   margin:0 10px;
   margin-top:20px;
@@ -258,6 +275,7 @@ export default {
   width:30% ;
   margin:2px;
   padding:10px 0;
+  font-size:14px;
 }
 
 
