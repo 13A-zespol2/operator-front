@@ -73,6 +73,7 @@ import axios from "axios";
 import endpoint from "../endpoint.json";
 import Header from "@/components/Header";
 import Login from "@/components/Login";
+import GooglePay from "@/components/GooglePay";
 
 export default {
 
@@ -81,6 +82,7 @@ export default {
       components: {
         'my-header': Header,
         'my-login': Login,
+        GooglePay
       },
 
         dataFromSession: [],
