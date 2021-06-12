@@ -27,8 +27,8 @@
                 <div v-if="this.oneInvoice !== null">
                   <p class="bold_title" > {{this.oneInvoice.price}} PLN</p>
                   <p class="default_text">Document number: <b>{{this.oneInvoice.invoiceNumber}}</b></p>
-                  <p class="default_text">Payable to: <b><span>{{this.date | formatDate}}</span></b></p>
-                  <p class="default_text"></p>
+                  <p v-if="this.oneInvoice.statusInvoice === 'UNPAID'" class="default_text">Payable to: <b><span>{{this.date | formatDate}}</span></b></p>
+                  <p class="default_text"> Invoice status: <b>{{this.oneInvoice.statusInvoice}}</b></p>
                   <a class="colored_text" v-on:click="changeRoute('/invoice')">Your invoices</a>
                 </div>
                 <div v-else>
@@ -131,12 +131,13 @@ export default {
           .then((response) => {
             if (response.status === 200) {
               this.phoneNumbers = response.data.phoneNumberList;
+              sessionStorage.setItem('numbers', JSON.stringify(this.phoneNumbers));
               this.mainNumber = this.phoneNumbers[0];
               this.oneInvoice = response.data.invoices;
-              this.mainNumber = this.mainNumber.match(/.{1,3}/g).join(' ')
+              this.mainNumber = this.mainNumber.match(/.{1,3}/g).join(' ');
               const date = new Date(this.oneInvoice.dateInvoice);
               this.date = this.addDays(date, 7);
-              sessionStorage.setItem('numbers', JSON.stringify(this.phoneNumbers));
+
 
             }
           })

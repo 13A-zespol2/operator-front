@@ -58,6 +58,7 @@ export default {
               .then((response) => {
                 if (response.status === 200) {
                   sessionStorage.removeItem('loggedIn');
+                  sessionStorage.removeItem('numbers');
                   this.$router.push('/');
                 }
               })
