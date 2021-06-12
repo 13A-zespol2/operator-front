@@ -43,6 +43,8 @@ export default {
       Invoice
     },
 
+    invoiceNumber: '',
+
     amount: '0.00',
     existingPaymentMethodRequired: true,
     buttonColor: 'default',
@@ -78,6 +80,7 @@ export default {
   created() {
     let a = JSON.parse(sessionStorage.getItem('invoices'));
     this.amount = JSON.stringify(a[0].price);
+    this.invoiceNumber = JSON.stringify(a[0].invoiceNumber);
   },
 
   methods: {
@@ -89,7 +92,7 @@ export default {
     },
     onPaymentDataAuthorized: (paymentData) => {
       console.log('payment authorized', paymentData)
-      axios.put(`${endpoint.url}/invoice/payment`, {status: "SUCCESS",invoiceNumber: Invoice.data()})
+      axios.put(`${endpoint.url}/invoice/payment`, {status: "SUCCESS",invoiceNumber: this.invoiceNumber})
 
       return {
         transactionState: "SUCCESS",

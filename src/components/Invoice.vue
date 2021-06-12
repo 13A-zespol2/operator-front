@@ -45,6 +45,7 @@
 
       <div class="flexbox_horizontal_invoices">
         <div class="invoices"  >
+
           <div v-for="invoiceInfs in invoiceInf" :key="'invoiceInfs'">
           <div class="panel panel-default"  v-if="invoiceInfs.invoiceStatusEnum === 'PAID'">
             <div class="panel-heading" role="tab">
