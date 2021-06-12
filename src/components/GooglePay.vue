@@ -88,7 +88,7 @@ export default {
     },
     onPaymentDataAuthorized: (paymentData) => {
       console.log('payment authorized', paymentData)
-      axios.put(`${endpoint.url}/invoice/payment`, {status: "SUCCESS"})
+      axios.put(`${endpoint.url}/invoice/payment`, {status: "SUCCESS",invoiceNumber: Invoice.data()})
 
       return {
         transactionState: "SUCCESS",

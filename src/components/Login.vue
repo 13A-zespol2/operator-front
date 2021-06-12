@@ -29,7 +29,7 @@
           <button v-google-signin-button="clientId" class="button_default">Log in with <img class="payment_logo"
                                                                                                   src="../images/google_logo.png"></button>
           <p>No account?<span class="colored_text" v-on:click="register">Create one</span></p>
-          <GooglePay />
+
         </div>
       </div>
     </div>

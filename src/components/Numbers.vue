@@ -27,7 +27,7 @@
           <div class="pin_change">
             <p class="text_default">Change your PIN 🔒</p>
             <p class="pin_validation">If you want to change your PIN Code, you have to use 4 - 8 characters and only digits.</p>
-                <input v-on:input="log($event.target.value, $event.target.name)" type="text" class="input_default" placeholder="Text your PIN here">
+                <input v-on:input="log($event.target.value, $event.target.name)" type="password" class="input_default" placeholder="Text your PIN here">
             <button type="submit" class="button_default" @click="changePinForNumber(number.phoneNumber.number)"> Change</button>
           </div>
         </div>
