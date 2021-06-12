@@ -2,15 +2,11 @@
   <div>
     <div class="main">
       <div class="container">
-
         <div class="flexbox_horizontal">
           <div class="register_container">
-
-            <div v-if="this.$v.registerForm.$error">
-              Form has errors
-            </div>
-
+            <FlashMessage :position="'right top'"></FlashMessage>
             <form class="register_form">
+
               <div class="logo" style="margin-bottom:20px;">
                 <a v-on:click="$router.push('/')"><img class="logo_img" src="../images/logo.png"></a>
               </div>
@@ -67,7 +63,12 @@ export default {
         register() {
           this.$v.registerForm.$touch();
           if (this.$v.registerForm.$error) {
-            return
+            this.flashMessage.error({
+              status: 'error',
+              title: 'Error',
+              message: 'Form has errors',
+              time: 2000,
+            })
           } else {
             axios.post(`${endpoint.url}/register`, this.registerForm, {
               headers: {
@@ -76,11 +77,17 @@ export default {
             })
                 .then((response) => {
                   if (response.status === 200) {
+                    this.flashMessage.success({
+                      status: 'success',
+                      title: 'Success!',
+                      message: 'Registered successfully',
+                      time: 2000,
+                    })
                     this.$router.push('/');
                   }
                 })
                 .catch(() => {
-                  this.info = 'Niepoprawne dane do logowania';
+
                 })
           }
         },

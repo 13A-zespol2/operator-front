@@ -3,8 +3,9 @@
     <my-header/>
 
     <div id="container">
-
+      <FlashMessage :position="'right top'"></FlashMessage>
       <div class="main">
+
         <div class="container">
           <div class="flexbox_horizontal">
             <div class="phone_info">
@@ -18,7 +19,7 @@
                 <p class="bold_title"> Your main number</p>
                 <p class="bold_title">+48 {{this.mainNumber}}</p>
                 <a class="colored_text" v-on:click="changeRoute('/numbers')">Your other numbers</a>
-                <a class="colored_text">Register new number</a>
+                <a class="colored_text" v-on:click="generateNewNumber()">Register new number</a>
               </div>
 
               <div class="last_invoice" >
@@ -99,6 +100,29 @@ export default {
       });
     },
 
+    generateNewNumber() {
+      axios.post(`${endpoint.url}/dashboard/registerNewNumber`, this.dataFromSession)
+          .then((response) => {
+            if (response.status === 200) {
+              this.flashMessage.success({
+                status: 'success',
+                title: 'Success!',
+                message: 'Phone number successfully generated!',
+                time: 2000,
+              })
+              this.$router.go(0);
+            }
+          })
+          .catch(() => {
+            this.flashMessage.info({
+              status: 'info',
+              title: 'Info!',
+              message: 'The maximum phone number to generate is 3!',
+              time: 2000,
+            })
+          });
+    },
+
     getDataToDashboard() {
       this.dataFromSession = JSON.parse(sessionStorage.getItem('loggedIn'));
       //this.invoiceInf = JSON.parse(sessionStorage.getItem('invoices'));
@@ -113,6 +137,7 @@ export default {
               const date = new Date(this.oneInvoice.dateInvoice);
               this.date = this.addDays(date, 7);
               sessionStorage.setItem('numbers', JSON.stringify(this.phoneNumbers));
+
             }
           })
           .catch(() => {

@@ -26,6 +26,7 @@
   left:0;
   right:0;
   margin:auto;
+  z-index: 999999;
 }
 
 .footer_col{

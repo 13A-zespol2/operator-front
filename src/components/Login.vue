@@ -4,6 +4,7 @@
     <div class="main">
       <div class="container" style="height:84vh;display:flex;justify-content:center;">
         <div class="login_form">
+          <FlashMessage :position="'right top'"></FlashMessage>
           <div class="logo" style="margin-bottom:20px;">
             <img class="logo_img" src="../images/logo.png">
           </div>
@@ -39,7 +40,6 @@
 import axios from 'axios'
 import endpoint from '../endpoint.json';
 import GoogleSignInButton from 'vue-google-signin-button-directive'
-
 export default {
   directives: {
     GoogleSignInButton
@@ -72,7 +72,12 @@ export default {
             }
           })
           .catch(() => {
-            this.info = 'Niepoprawne dane do logowania';
+            this.flashMessage.error({
+              status: 'error',
+              title: 'Error',
+              message: 'Wrong username/password or fields empty',
+              time: 2000,
+            })
           });
     },
 
@@ -105,6 +110,21 @@ export default {
 </script>
 
 <style scoped>
+.exceptionMsg {
+  position: fixed;
+  top: 20px;
+  width: 20%;
+  transition: 5s ease;
+  margin: auto;
+  z-index: 99999;
+  color: black !important;
+}
+
+.exceptionMsg *{
+  color: black !important;
+}
+
+
 .login_form {
   display: flex;
   flex-direction: column;
