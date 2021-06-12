@@ -23,10 +23,9 @@
 
               <div class="last_invoice">
                 <p class="title"> Last invoice</p>
-                <p class="bold_title">75.67 PLN</p>
-                <p class="default_text">Document number: <b>FV/24561234132/05/2021</b></p>
-                <p class="default_text">Payable to: <b>19.05.2021</b></p>
-                <p class="default_text" style="color:red;font-weight:700;">Not paid yet 🙄</p>
+                <p class="bold_title">{{ this.invoiceInf.slice(-1)[0].price }} PLN</p>
+                <p class="default_text">Document number: <b>{{this.invoiceInf.slice(-1)[0].invoiceNumber}}</b></p>
+                <p class="default_text">Payable to: <b><span>{{this.date | formatDate}}</span></b></p>
                 <a class="colored_text" v-on:click="changeRoute('/invoice')">Your invoices</a>
               </div>
             </div>
@@ -47,6 +46,15 @@ import Login from '../components/Login'
 import axios from "axios";
 import endpoint from "../endpoint.json";
 
+import moment from 'moment';
+import Vue from "vue";
+
+Vue.filter('formatDate', function(value) {
+  if (value) {
+    return moment(String(value)).format('YYYY-MM-DD')
+  }
+})
+
 export default {
 
   data() {
@@ -58,6 +66,9 @@ export default {
       dataFromSession: [],
       phoneNumbers:[],
       mainNumber:'',
+      invoiceInf: [],
+      date: '',
+      newD: ''
     };
 
   },
@@ -78,6 +89,7 @@ export default {
 
     getDataToDashboard() {
       this.dataFromSession = JSON.parse(sessionStorage.getItem('loggedIn'));
+      this.invoiceInf = JSON.parse(sessionStorage.getItem('invoices'));
 
       axios.post(`${endpoint.url}/dashboard`, this.dataFromSession)
           .then((response) => {
@@ -86,12 +98,17 @@ export default {
               this.phoneNumbers = response.data.phoneNumberList;
               this.mainNumber = this.phoneNumbers[0];
               this.mainNumber = this.mainNumber.match(/.{1,3}/g).join(' ')
+              const date = new Date(this.invoiceInf.slice(-1)[0].dateInvoice);
+              this.date = this.addDays(date, 7);
               sessionStorage.setItem('numbers', JSON.stringify(this.phoneNumbers));
             }
           })
           .catch(() => {
             this.info = 'Niepoprawne dane do logowania';
           });
+    },
+    addDays(theDate, days){
+      return new Date(theDate.getTime() + days*24*60*60*1000);
     }
 
   }

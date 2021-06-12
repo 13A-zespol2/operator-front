@@ -2,20 +2,30 @@
 
   <div class="main">
     <my-header/>
+
     <div class="container">
-      <div class="flexbox_horizontal">
-        <div class="payment_info">
+
+      <div class="flexbox_horizontal"  >
+
+        <div class="payment_info" v-for="invoiceInfs in invoiceInf" v-if="invoiceInfs.invoiceStatusEnum==='UNPAID'">
+
           <div class="payment_info_2col">
             <div class="amount">
               <p class="title">Invoice value</p>
-              <p class="bold_title">75.67 PLN</p>
+              <p class="bold_title">{{invoiceInfs.price}} PLN</p>
             </div>
-            <div class="invoice_deadline">
-              <p class="title">Invoice number</p>
-              <p class="bold_title">FV/215123/04/2021</p>
+            <div  v-for="invoiceInfs in invoiceInf" >
+            <div class="invoice_deadline" v-if="invoiceInfs.invoiceStatusEnum==='UNPAID'">
+              <p class="title" >Invoice number</p>
+              <p class="bold_title">{{invoiceInfs.invoiceNumber}}</p>
             </div>
+            </div>
+
           </div>
           <a class="button_payment">Pay now with <img class="payment_logo" src="src/images/payu_logo.png"></a>
+        </div>
+        <div class="payment_info"  v-else-if="invoiceInf.invoiceStatusEnum==='PAID'">
+
         </div>
           <div class="bank_info">
             <p class="title">Bank transfer details</p>
@@ -26,37 +36,80 @@
           </div>
         </div>
 
-      <div class="flexbox_horizontal">
+      <div class="flexbox_horizontal" >
         <div class="invoices">
           <p class="bold_title">Paid invoices</p>
-          <p class="default_text">You don't have paid invoices yet 😕</p>
+          <p class="default_text"></p>
         </div>
       </div>
 
       <div class="flexbox_horizontal">
-        <div class="invoices">
-
-          <div class="panel panel-default">
+        <div class="invoices"  >
+          <div v-for="invoiceInfs in invoiceInf">
+          <div class="panel panel-default"  v-if="invoiceInfs.invoiceStatusEnum === 'PAID'">
             <div class="panel-heading" role="tab">
-              <div class="panel-ico-title">
-                <h4 class="panel-title">FV/215123/04/2021</h4>
+              <div class="panel-ico-title" >
+                <h4 class="panel-title">{{invoiceInfs.invoiceNumber}} , {{invoiceInfs.price}} PLN</h4>
                 <i class="fas fa-chevron-up"></i>
               </div>
             </div>
             <div aria-labelledby="heading<?php echo $c ?>" class="panel-collapse collapse"
                  role="tabpanel">
-              <div class="panel-body">Here will be your invoice data 😉</div>
+              <div class="panel-body"></div>
             </div>
 
           </div>
+
         </div>
+          </div>
       </div>
     </div>
     <my-footer/>
   </div>
 
 </template>
+<script>
+import axios from "axios";
+import endpoint from "../endpoint.json";
+import Header from "@/components/Header";
+import Login from "@/components/Login";
 
+export default {
+
+  data() {
+    return {
+      components: {
+        'my-header': Header,
+        'my-login': Login,
+      },
+
+        dataFromSession: [],
+        invoiceInf: [],
+    };
+  },
+
+  mounted() {
+    this.getDataToInvoice()
+  },
+  methods:{
+    getDataToInvoice(){
+      this.dataFromSession = JSON.parse(sessionStorage.getItem('loggedIn'));
+      axios.post(`${endpoint.url}/invoice`, this.dataFromSession)
+      .then((response)=> {
+        if(response.status == 200){
+          this.invoiceInf = response.data;
+          sessionStorage.setItem('invoices', JSON.stringify(this.invoiceInf))
+        }
+      })
+      .catch(()=>{
+        this.info = 'Lipa';
+      })
+    }
+  }
+
+}
+
+</script>
 
 <style scoped>
 .flexbox_horizontal {
