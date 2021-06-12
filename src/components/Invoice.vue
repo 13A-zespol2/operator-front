@@ -5,16 +5,16 @@
 
     <div class="container">
 
-      <div class="flexbox_horizontal"  >
+      <div class="flexbox_horizontal_invoices">
 
-        <div class="payment_info" v-for="invoiceInfs in invoiceInf" v-if="invoiceInfs.invoiceStatusEnum==='UNPAID'">
+        <div class="payment_info" v-if="invoiceInfs.invoiceStatusEnum==='UNPAID'" v-for="invoiceInfs in invoiceInf" :key="'invoiceInfs'">
 
           <div class="payment_info_2col">
             <div class="amount">
               <p class="title">Invoice value</p>
               <p class="bold_title">{{invoiceInfs.price}} PLN</p>
             </div>
-            <div  v-for="invoiceInfs in invoiceInf" >
+            <div  v-for="invoiceInfs in invoiceInf" :key="'invoiceInfs'">
             <div class="invoice_deadline" v-if="invoiceInfs.invoiceStatusEnum==='UNPAID'">
               <p class="title" >Invoice number</p>
               <p class="bold_title">{{invoiceInfs.invoiceNumber}}</p>
@@ -22,7 +22,7 @@
             </div>
 
           </div>
-          <GooglePay />
+          <a class="button_payment">Pay now with G</a>
         </div>
         <div class="payment_info"  v-else-if="invoiceInf.invoiceStatusEnum==='PAID'" >
 
@@ -36,16 +36,16 @@
           </div>
         </div>
 
-      <div class="flexbox_horizontal" >
+      <div class="flexbox_horizontal_invoices" >
         <div class="invoices">
           <p class="bold_title">Paid invoices</p>
           <p class="default_text"></p>
         </div>
       </div>
 
-      <div class="flexbox_horizontal">
+      <div class="flexbox_horizontal_invoices">
         <div class="invoices"  >
-          <div v-for="invoiceInfs in invoiceInf">
+          <div v-for="invoiceInfs in invoiceInf" :key="'invoiceInfs'">
           <div class="panel panel-default"  v-if="invoiceInfs.invoiceStatusEnum === 'PAID'">
             <div class="panel-heading" role="tab">
               <div class="panel-ico-title" >
@@ -115,7 +115,7 @@ export default {
 </script>
 
 <style scoped>
-.flexbox_horizontal {
+.flexbox_horizontal_invoices {
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -137,7 +137,7 @@ export default {
   border-radius: 5px;
   width: 100%;
   padding: 50px 30px;
-  box-shadow: -5px 5px 20px 1px #ddd;
+  box-shadow: 4px 4px 10px 3px #ccc;
   background-color: #fff;
   margin: 0 10px;
 }
@@ -149,7 +149,7 @@ export default {
   border-radius: 5px;
   width: 100%;
   padding: 50px 30px;
-  box-shadow: -5px 5px 20px 1px #ddd;
+  box-shadow: 4px 4px 10px 3px #ccc;
   background-color: #fff;
   margin: 0 10px;
 }
@@ -161,8 +161,8 @@ export default {
   flex-direction: column;
   border-radius: 5px;
   width: 100%;
-  padding: 50px 30px;
-  box-shadow: -5px 5px 20px 1px #ddd;
+  padding: 20px 30px;
+  box-shadow: 4px 4px 10px 3px #ccc;
   background-color: #fff;
   margin: 0 10px;
   margin-top: 20px;

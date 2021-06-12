@@ -53,7 +53,6 @@
 <script>
 import Header from '../components/Header'
 import Login from '../components/Login'
-import Invoice from "@/components/Invoice";
 import axios from "axios";
 import endpoint from "../endpoint.json";
 
@@ -174,12 +173,12 @@ export default {
 
 .phone_info {
   padding: 50px 30px;
-  box-shadow: -5px 5px 20px 1px #ddd;
+  box-shadow: 4px 4px 10px 3px #ccc;
   background-color: #fff;
 }
 
 .last_invoice, .user_numbers {
-  box-shadow: -5px 5px 20px 1px #ddd;
+  box-shadow: 4px 4px 10px 3px #ccc;
   padding: 30px;
   border-radius: 5px;
   background-color: #fff;

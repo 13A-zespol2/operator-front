@@ -229,4 +229,8 @@ a:active, button:active, a, button, input {
   color: #91003d;
   margin: 5px;
 }
+
+.colored_text:hover{
+  cursor: pointer;
+}
 </style>
