@@ -22,13 +22,21 @@
                 <a class="colored_text" v-on:click="generateNewNumber()">Register new number</a>
               </div>
 
-              <div class="last_invoice">
+              <div class="last_invoice" >
                 <p class="title"> Last invoice</p>
-                <p class="bold_title">75.67 PLN</p>
-                <p class="default_text">Document number: <b>FV/24561234132/05/2021</b></p>
-                <p class="default_text">Payable to: <b>19.05.2021</b></p>
-                <p class="default_text" style="color:red;font-weight:700;">Not paid yet 🙄</p>
-                <a class="colored_text" v-on:click="changeRoute('/invoice')">Your invoices</a>
+                <div v-if="this.oneInvoice !== null">
+                  <p class="bold_title" > {{this.oneInvoice.price}} PLN</p>
+                  <p class="default_text">Document number: <b>{{this.oneInvoice.invoiceNumber}}</b></p>
+                  <p v-if="this.oneInvoice.statusInvoice === 'UNPAID'" class="default_text">Payable to: <b><span>{{this.date | formatDate}}</span></b></p>
+                  <p class="default_text"> Invoice status: <b>{{this.oneInvoice.statusInvoice}}</b></p>
+                  <a class="colored_text" v-on:click="changeRoute('/invoice')">Your invoices</a>
+                </div>
+                <div v-else>
+                  <p class="default_text">You dont have any invoice</p>
+                </div>
+
+
+
               </div>
             </div>
           </div>
@@ -45,8 +53,19 @@
 <script>
 import Header from '../components/Header'
 import Login from '../components/Login'
+import Invoice from "@/components/Invoice";
 import axios from "axios";
 import endpoint from "../endpoint.json";
+
+
+import moment from 'moment';
+import Vue from "vue";
+
+Vue.filter('formatDate', function(value) {
+  if (value) {
+    return moment(String(value)).format('YYYY-MM-DD')
+  }
+})
 
 export default {
 
@@ -59,12 +78,16 @@ export default {
       dataFromSession: [],
       phoneNumbers:[],
       mainNumber:'',
+      oneInvoice: [],
+      date: '',
+      newD: ''
     };
 
   },
 
   mounted() {
-    this.getDataToDashboard()
+    this.getDataToDashboard();
+
   },
 
   methods: {
@@ -102,21 +125,28 @@ export default {
 
     getDataToDashboard() {
       this.dataFromSession = JSON.parse(sessionStorage.getItem('loggedIn'));
+      //this.invoiceInf = JSON.parse(sessionStorage.getItem('invoices'));
 
       axios.post(`${endpoint.url}/dashboard`, this.dataFromSession)
           .then((response) => {
             if (response.status === 200) {
-              console.log(response.data);
               this.phoneNumbers = response.data.phoneNumberList;
-              this.mainNumber = this.phoneNumbers[0];
-              this.mainNumber = this.mainNumber.match(/.{1,3}/g).join(' ')
               sessionStorage.setItem('numbers', JSON.stringify(this.phoneNumbers));
+              this.mainNumber = this.phoneNumbers[0];
+              this.oneInvoice = response.data.invoices;
+              this.mainNumber = this.mainNumber.match(/.{1,3}/g).join(' ');
+              const date = new Date(this.oneInvoice.dateInvoice);
+              this.date = this.addDays(date, 7);
+
 
             }
           })
           .catch(() => {
             this.info = 'Niepoprawne dane do logowania';
           });
+    },
+    addDays(theDate, days){
+      return new Date(theDate.getTime() + days*24*60*60*1000);
     }
 
   }

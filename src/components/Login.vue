@@ -60,7 +60,7 @@ export default {
       dataToDashboard: {
         phones: [],
         contract: '',
-        invoices: ''
+        //invoices: ''
       },
 
       clientId: '1010076371628-k41s2flppiahso1j57v8ocm4qlvjgmt3.apps.googleusercontent.com'
