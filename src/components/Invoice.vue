@@ -42,7 +42,7 @@
           <p class="default_text"></p>
         </div>
       </div>
-
+      <GooglePay />
       <div class="flexbox_horizontal_invoices">
         <div class="invoices"  >
           <div v-for="invoiceInfs in invoiceInf" :key="'invoiceInfs'">
