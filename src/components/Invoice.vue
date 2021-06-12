@@ -71,12 +71,12 @@
 <script>
 import axios from "axios";
 import endpoint from "../endpoint.json";
-import Header from "@/components/Header";
-import Login from "@/components/Login";
+import Header from "../components/Header";
+import Login from "../components/Login";
 
 export default {
   components: {
-    GooglePay: () => import('@/components/GooglePay')
+    GooglePay: () => import('../components/GooglePay')
   },
   data() {
     return {
@@ -98,7 +98,7 @@ export default {
       this.dataFromSession = JSON.parse(sessionStorage.getItem('loggedIn'));
       axios.post(`${endpoint.url}/invoice`, this.dataFromSession)
       .then((response)=> {
-        if(response.status == 200){
+        if(response.status === 200){
           this.invoiceInf = response.data;
           sessionStorage.setItem('invoices', JSON.stringify(this.invoiceInf))
         }
