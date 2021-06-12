@@ -22,7 +22,7 @@
             </div>
 
           </div>
-          <a class="button_payment">Pay now with G</a>
+          <GooglePay></GooglePay>
         </div>
         <div class="payment_info"  v-else-if="invoiceInf.invoiceStatusEnum==='PAID'" >
 
@@ -42,7 +42,7 @@
           <p class="default_text"></p>
         </div>
       </div>
-      <GooglePay />
+
       <div class="flexbox_horizontal_invoices">
         <div class="invoices"  >
           <div v-for="invoiceInfs in invoiceInf" :key="'invoiceInfs'">
@@ -76,7 +76,9 @@ import Login from "@/components/Login";
 import GooglePay from "@/components/GooglePay";
 
 export default {
-
+  components: {
+    GooglePay: () => import('@/components/GooglePay')
+  },
   data() {
     return {
       components: {
@@ -129,7 +131,7 @@ export default {
   justify-content: space-around;
   flex-direction: row;
   width: 100%;
-  margin: 0 10px;
+  margin: 0 10px 30px;
 }
 
 .payment_info {
