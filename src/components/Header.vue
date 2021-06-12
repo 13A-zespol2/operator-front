@@ -85,7 +85,7 @@ template {
   background-color: #91003d;
   position: fixed;
   top: 0;
-
+  z-index: 99999;
 }
 
 /*Header styling*/

@@ -16,6 +16,7 @@
     "@google-pay/button-element": "^2.3.0",
     "@mdi/font": "^5.9.55",
     "@mdi/js": "^5.9.55",
+    "@smartweb/vue-flash-message": "^0.6.10",
     "again": "0.0.1",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",

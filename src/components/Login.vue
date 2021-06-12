@@ -4,6 +4,7 @@
     <div class="main">
       <div class="container" style="height:84vh;display:flex;justify-content:center;">
         <div class="login_form">
+          <FlashMessage :position="'right top'"></FlashMessage>
           <div class="logo" style="margin-bottom:20px;">
             <img class="logo_img" src="../images/logo.png">
           </div>
@@ -51,7 +52,6 @@ export default {
   },
   data() {
     return {
-
       loginForm: {
         email: '',
         password: '',
@@ -78,7 +78,12 @@ export default {
             }
           })
           .catch(() => {
-            this.info = 'Niepoprawne dane do logowania';
+            this.flashMessage.error({
+              status: 'error',
+              title: 'Error',
+              message: 'Wrong username/password or fields empty',
+              time: 2000,
+            })
           });
     },
 
