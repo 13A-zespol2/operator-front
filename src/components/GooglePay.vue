@@ -79,7 +79,7 @@ export default {
 
   methods: {
     onLoadPaymentData: event => {
-     this.amount = Invoice.data().invoiceInf.price;//TODO WSTAWI POLE OD CENY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     this.amount = Invoice.data().invoiceInf.price;//TODO WSTAWIC POLE OD CENY
     console.log('load payment data', event.detail);
 
     },

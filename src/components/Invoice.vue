@@ -22,7 +22,7 @@
             </div>
 
           </div>
-          <a class="button_payment">Pay now with G</a>
+          <GooglePay />
         </div>
         <div class="payment_info"  v-else-if="invoiceInf.invoiceStatusEnum==='PAID'" >
 
@@ -42,7 +42,7 @@
           <p class="default_text"></p>
         </div>
       </div>
-      <GooglePay />
+
       <div class="flexbox_horizontal_invoices">
         <div class="invoices"  >
           <div v-for="invoiceInfs in invoiceInf" :key="'invoiceInfs'">
@@ -73,9 +73,10 @@ import axios from "axios";
 import endpoint from "../endpoint.json";
 import Header from "@/components/Header";
 import Login from "@/components/Login";
+import GooglePay from "@/components/GooglePay";
 
 export default {
-
+  components: {GooglePay},
   data() {
     return {
       components: {
