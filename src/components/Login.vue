@@ -27,7 +27,8 @@
           </form>
           <p class="title">OR...</p>
           <button v-google-signin-button="clientId" class="button_default">Log in with <img class="payment_logo"
-                                                                                                  src="../images/google_logo.png"></button>
+                                                                                                   src="../images/google_logo.png"></button>
+
           <p>No account?<span class="colored_text" v-on:click="register">Create one</span></p>
 
         </div>
@@ -42,14 +43,12 @@ import axios from 'axios'
 import endpoint from '../endpoint.json';
 import GoogleSignInButton from 'vue-google-signin-button-directive'
 
-import GooglePay from "./GooglePay";
+
 export default {
   directives: {
     GoogleSignInButton,
   },
-  components:{
-    GooglePay
-  },
+
   data() {
     return {
       loginForm: {

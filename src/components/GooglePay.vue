@@ -1,10 +1,11 @@
 <template>
-    <google-pay-button
-        environment="TEST"
-        v-bind:button-type="buttonType"
-        v-bind:button-color="buttonColor"
-        v-bind:existing-payment-method-required="existingPaymentMethodRequired"
-        v-bind:paymentRequest.prop="{
+  <google-pay-button
+      environment="TEST"
+      v-bind:button-color="buttonColor"
+      v-bind:button-type="buttonType"
+      v-bind:existing-payment-method-required="existingPaymentMethodRequired"
+      v-bind:onPaymentAuthorized.prop="onPaymentDataAuthorized"
+      v-bind:paymentRequest.prop="{
           apiVersion: paymentRequest.apiVersion,
           apiVersionMinor: paymentRequest.apiVersionMinor,
           allowedPaymentMethods: paymentRequest.allowedPaymentMethods,
@@ -18,20 +19,17 @@
           },
           callbackIntents: ['PAYMENT_AUTHORIZATION'],
         }"
-        v-on:loadpaymentdata="onLoadPaymentData"
-        v-on:error="onError"
-        v-bind:onPaymentAuthorized.prop="onPaymentDataAuthorized"
-    ></google-pay-button>
+      v-on:error="onError"
+      v-on:loadpaymentdata="onLoadPaymentData"
+  ></google-pay-button>
 </template>
 
 
-
 <script>
-
+import axios from 'axios'
+import endpoint from '../endpoint.json';
 import "@google-pay/button-element";
 import Invoice from "./Invoice";
-import axios from "axios";
-import endpoint from "../endpoint.json";
 
 export default {
 
@@ -39,7 +37,7 @@ export default {
   name: "GooglePay",
   props: {},
   data: () => ({
-    components:{
+    components: {
       Invoice
     },
 
@@ -80,26 +78,40 @@ export default {
   created() {
     let a = JSON.parse(sessionStorage.getItem('invoices'));
     this.amount = JSON.stringify(a[0].price);
-    this.invoiceNumber = JSON.stringify(a[0].invoiceNumber);
+    console.log(a)
+    this.invoiceNumber = JSON.stringify(a[0]);
+    console.log(this.invoiceNumber)
   },
 
   methods: {
     onLoadPaymentData: event => {
+
       console.log('load payment data', event.detail);
     },
     onError: event => {
-      console.error('error',event.error);
+      console.error('error', event.error);
     },
-    onPaymentDataAuthorized: (paymentData) => {
+    onPaymentDataAuthorized(paymentData) {
       console.log('payment authorized', paymentData)
-      axios.put(`${endpoint.url}/invoice/payment`, {status: "SUCCESS",invoiceNumber: this.invoiceNumber})
-
+      this.changeStatus()
       return {
         transactionState: "SUCCESS",
       };
 
-    }
+    },
 
+    changeStatus() {
+      console.log(this.invoiceNumber)
+      const number= {
+       invoiceNumber: this.invoiceNumber
+      }
+      axios.put(`${endpoint.url}/invoice/payment`,JSON.parse(this.invoiceNumber))
+          .then((response) => {
+            if (response.status === 200) {
+
+            }
+          })
+    }
   }
 }
 </script>
@@ -110,9 +122,11 @@ export default {
   display: flex;
   flex-direction: row;
 }
+
 .example > .demo {
   flex: 1 0 0;
 }
+
 .example > .demo > * {
   margin: 1px;
 }

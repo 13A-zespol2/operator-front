@@ -24,6 +24,7 @@
           </div>
           <GooglePay></GooglePay>
         </div>
+
         <div class="payment_info"  v-else-if="invoiceInf.invoiceStatusEnum==='PAID'" >
 
         </div>
@@ -74,6 +75,7 @@ import axios from "axios";
 import endpoint from "../endpoint.json";
 import Header from "@/components/Header";
 import Login from "@/components/Login";
+import GooglePay from "./GooglePay";
 
 export default {
   components: {
@@ -84,9 +86,9 @@ export default {
       components: {
         'my-header': Header,
         'my-login': Login,
-        GooglePay
-      },
 
+      },
+        invoiceToPay:'',
         dataFromSession: [],
         invoiceInf: [],
     };
@@ -102,6 +104,7 @@ export default {
       .then((response)=> {
         if(response.status === 200){
           this.invoiceInf = response.data;
+
           sessionStorage.setItem('invoices', JSON.stringify(this.invoiceInf))
         }
       })
