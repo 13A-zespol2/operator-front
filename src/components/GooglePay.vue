@@ -43,7 +43,9 @@ export default {
       Invoice
     },
 
-    amount: '10.00',
+    invoiceNumber: '',
+
+    amount: '0.00',
     existingPaymentMethodRequired: true,
     buttonColor: 'default',
     buttonType: 'buy',
@@ -75,18 +77,22 @@ export default {
 
   }),
 
+  created() {
+    let a = JSON.parse(sessionStorage.getItem('invoices'));
+    this.amount = JSON.stringify(a[0].price);
+    this.invoiceNumber = JSON.stringify(a[0].invoiceNumber);
+  },
+
   methods: {
     onLoadPaymentData: event => {
-     this.amount = Invoice.data().invoiceInf.price;//TODO WSTAWIC POLE OD CENY
-    console.log('load payment data', event.detail);
-
+      console.log('load payment data', event.detail);
     },
     onError: event => {
       console.error('error',event.error);
     },
     onPaymentDataAuthorized: (paymentData) => {
       console.log('payment authorized', paymentData)
-      axios.put(`${endpoint.url}/invoice/payment`, {status: "SUCCESS",invoiceNumber: Invoice.data()})
+      axios.put(`${endpoint.url}/invoice/payment`, {status: "SUCCESS",invoiceNumber: this.invoiceNumber})
 
       return {
         transactionState: "SUCCESS",
