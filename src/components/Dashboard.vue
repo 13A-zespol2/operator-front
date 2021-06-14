@@ -23,7 +23,7 @@
               </div>
 
               <div class="last_invoice" >
-                <p class="title"> Last invoice</p>
+                <p class="bold_title"> Last invoice</p>
                 <div v-if="this.oneInvoice !== null">
                   <p class="bold_title" > {{this.oneInvoice.price}} PLN</p>
                   <p class="default_text">Document number: <b>{{this.oneInvoice.invoiceNumber}}</b></p>
@@ -32,11 +32,8 @@
                   <a class="colored_text" v-on:click="changeRoute('/invoice')">Your invoices</a>
                 </div>
                 <div v-else>
-                  <p class="default_text">You dont have any invoice</p>
+                  <p class="default_text">You dont have any invoices yet.</p>
                 </div>
-
-
-
               </div>
             </div>
           </div>

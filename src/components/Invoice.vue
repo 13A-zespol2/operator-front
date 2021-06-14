@@ -59,9 +59,7 @@
                  role="tabpanel">
               <div class="panel-body"></div>
             </div>
-
           </div>
-
         </div>
           </div>
       </div>
@@ -75,7 +73,6 @@ import axios from "axios";
 import endpoint from "../endpoint.json";
 import Header from "@/components/Header";
 import Login from "@/components/Login";
-import GooglePay from "./GooglePay";
 
 export default {
   components: {

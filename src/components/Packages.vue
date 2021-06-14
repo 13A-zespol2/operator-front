@@ -13,7 +13,9 @@
         <div class="packages_flex" >
           <div class="package_info" v-for="(pack, index) in allPackages" :key="'pack'+index">
             <div v-bind:class="pack.packageType">
-            <img src="../images/mail_icon.png">
+              <div v-if="pack.packageType === 'SMS'"><img src="../images/mail_icon.png"></div>
+              <div v-if="pack.packageType === 'INTERNET'"><img src="../images/internet_icon.png"></div>
+              <div v-if="pack.packageType === 'MINUTES'"><img src="../images/telephone_icon.png"></div>
             <p class="title">{{pack.namePackage}}</p>
             <p class="default_text">
             {{pack.description}}
@@ -78,8 +80,8 @@ export default {
                 $('<div style="display: flex;justify-content: center;flex-direction: row;flex-wrap: nowrap;width: 100%;padding-bottom:50px;position: relative;" class="packages_flex" id="internet_flex">').insertAfter($('.packages_flex'));
                 $('.INTERNET').parent().appendTo('#internet_flex');
                 $('.MINUTES').parent().appendTo('#minutes_flex');
-                $('<p style="font-family: cg;font-size: 32px;color: #91003d;font-weight: 800;margin: 10px;" class="bold_title">INTERNET</p>').insertBefore($('#minutes_flex'));
-                $('<p style="font-family: cg;font-size: 32px;color: #91003d;font-weight: 800;margin: 10px;" class="bold_title">MINUTES</p>').insertBefore($('#internet_flex'));
+                $('<p style="font-family: cg;font-size: 32px;color: #91003d;font-weight: 800;margin: 10px;" class="bold_title">MINUTES</p>').insertBefore($('#minutes_flex'));
+                $('<p style="font-family: cg;font-size: 32px;color: #91003d;font-weight: 800;margin: 10px;" class="bold_title">INTERNET</p>').insertBefore($('#internet_flex'));
               });
             }
           })
@@ -160,12 +162,11 @@ select:focus{
 .package_info img {
   position: absolute;
   width: 150px;
-  top: 40px;
-  right: 10px;
-  opacity: 0.05;
+  top: 20px;
+  right: 25px;
+  opacity: 0.06;
   pointer-events: none;
 }
-
 
 .title {
   font-family: cg;
@@ -186,9 +187,10 @@ select:focus{
 .default_text {
   font-family: cg;
   font-size: 16px;
-  color: #484848;
-  font-weight: 500;
+  color: #666;
+  font-weight: 600;
   margin: 5px;
+  margin-top:20px;
 }
 
 .separator {
