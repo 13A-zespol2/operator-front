@@ -242,6 +242,7 @@ export default {
   }
 }
 
+
 .panel-ico-title {
   display: flex;
   flex-direction: row;
@@ -256,8 +257,10 @@ export default {
 
 
 .panel.panel-default {
-  border-top: 1px solid #d1d1d1;
-  border-bottom: 1px solid #d1d1d1;
+  border-top: 2px solid #d1d1d1;
+  border-bottom: 2px solid #d1d1d1;
+  display: flex;
+  padding:20px 0;
 }
 
 .panel-collapse.collapse {
