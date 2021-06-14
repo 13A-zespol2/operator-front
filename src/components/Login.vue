@@ -158,27 +158,6 @@ export default {
   transition: .2s ease;
 }
 
-.divinput:before {
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 900;
-  color: #E5E5E5;
-  content: '\f0e0';
-  position: absolute;
-  right: 20px;
-  top: 30%;
-  z-index: 99999;
-}
-
-.divinput2:before {
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 900;
-  color: #E5E5E5;
-  content: '\f023';
-  position: absolute;
-  right: 20px;
-  top: 40%;
-  z-index: 99999;
-}
 
 .button_default {
   background-color: #fff;
