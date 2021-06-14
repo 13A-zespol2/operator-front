@@ -76,10 +76,10 @@ export default {
               $(document).ready(function(){
                 $('<div style="display: flex;justify-content: center;flex-direction: row;flex-wrap: nowrap;width: 100%;padding-bottom:50px;position: relative;" class="packages_flex" id="minutes_flex">').insertAfter($('.packages_flex'));
                 $('<div style="display: flex;justify-content: center;flex-direction: row;flex-wrap: nowrap;width: 100%;padding-bottom:50px;position: relative;" class="packages_flex" id="internet_flex">').insertAfter($('.packages_flex'));
-                $('.MINUTES').parent().appendTo('#minutes_flex');
                 $('.INTERNET').parent().appendTo('#internet_flex');
-                $('<p style="font-family: cg;font-size: 32px;color: #91003d;font-weight: 800;margin: 10px;" class="bold_title">MINUTES</p>').insertBefore($('#minutes_flex'));
-                $('<p style="font-family: cg;font-size: 32px;color: #91003d;font-weight: 800;margin: 10px;" class="bold_title">INTERNET</p>').insertBefore($('#internet_flex'));
+                $('.MINUTES').parent().appendTo('#minutes_flex');
+                $('<p style="font-family: cg;font-size: 32px;color: #91003d;font-weight: 800;margin: 10px;" class="bold_title">INTERNET</p>').insertBefore($('#minutes_flex'));
+                $('<p style="font-family: cg;font-size: 32px;color: #91003d;font-weight: 800;margin: 10px;" class="bold_title">MINUTES</p>').insertBefore($('#internet_flex'));
               });
             }
           })

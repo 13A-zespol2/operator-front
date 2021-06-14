@@ -96,6 +96,7 @@ export default {
       this.changeStatus()
       return {
         transactionState: "SUCCESS",
+
       };
 
     },
@@ -108,7 +109,7 @@ export default {
       axios.put(`${endpoint.url}/invoice/payment`,JSON.parse(this.invoiceNumber))
           .then((response) => {
             if (response.status === 200) {
-
+              this.$router.push('/invoice');
             }
           })
     }

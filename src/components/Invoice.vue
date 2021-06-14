@@ -113,10 +113,10 @@ export default {
       })
     },
 
-
-
+    refreshPage() {
+      this.$router.go(0);
+    }
   }
-
 }
 
 </script>
