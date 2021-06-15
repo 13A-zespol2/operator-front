@@ -16,7 +16,11 @@
               <div class="pseudo"><input v-model="registerForm.password" placeholder="Password" type="password" required></div>
               <div class="pseudo"><input v-model="registerForm.retype" placeholder="Retype Password" type="password" required></div>
               <password-meter class ="pass" :password="registerForm.password"/>
-              <a class="button_default" name="login" type="submit" v-on:click="register()"> Register </a>
+              <div class="flexbox_horizontal" id="checkbox_container" style="align-items: center; justify-content: center">
+                <label label-for="chb"> <input type="checkbox" name="chb" id="chb">
+                Accept our <a href="#">regulations.</a></label>
+              </div>
+              <a class="button_default" name="login" type="submit" id="register_button" v-on:click="register()"> Register </a>
 
             </form>
 
@@ -35,6 +39,7 @@ import axios from "axios";
 import endpoint from "@/endpoint.json";
 import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
 import PasswordMeter from "vue-simple-password-meter";
+import $ from 'jquery';
 
 export default {
   name: "Register",
@@ -61,6 +66,16 @@ export default {
   ,
   methods: {
         register() {
+          //console.log($('#chb').prop());
+          if(!$('#chb').is(':checked')){
+            this.flashMessage.error({
+              status: 'error',
+              title: 'Error!',
+              message: 'You have to accept our regulations first!',
+              time: 2000,
+            })
+            return;
+          }
           this.$v.registerForm.$touch();
           if (this.$v.registerForm.$error) {
             this.flashMessage.error({
@@ -96,6 +111,17 @@ export default {
 </script>
 
 <style scoped>
+
+#checkbox_container label:hover{
+  cursor: pointer;
+}
+#checkbox_container{
+  margin-top:20px;
+}
+#checkbox_container input{
+  padding:0 !important;
+  margin:0 10px;
+}
 
 .pass{
   height: 7px;
