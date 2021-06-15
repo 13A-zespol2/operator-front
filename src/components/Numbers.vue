@@ -27,7 +27,7 @@
           <div class="pin_change">
             <p class="text_default">Change your PIN 🔒</p>
             <p class="pin_validation">If you want to change your PIN Code, you have to use 4 - 8 characters and only digits.</p>
-                <input v-on:input="log($event.target.value, $event.target.name)" type="password" class="input_default" placeholder="Text your PIN here" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" />
+                <input v-on:input="log($event.target.value, $event.target.name)" type="password" id="input_pin" class="input_default" placeholder="Text your PIN here" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" />
             <button type="submit" class="button_default" @click="changePinForNumber(number.phoneNumber.number)"> Change</button>
           </div>
         </div>
@@ -46,7 +46,7 @@ import endpoint from "../endpoint.json";
 
 
 
-$(document).on('keypress', 'input', function(){
+$(document).on('keypress', '#input_pin', function(){
   if($(this).val().length > 7){
     event.preventDefault();
   }
@@ -92,7 +92,7 @@ export default {
 
     },
     changePinForNumber(number) {
-      if($('.input_default').val().length < 4 && $('.input_default').val().length > 0){
+      if($('#input_pin').val().length < 4 && $('#input_pin').val().length > 0){
         this.flashMessage.error({
           status: 'error',
           title: 'Error!',

@@ -101,7 +101,6 @@ export default {
       .then((response)=> {
         if(response.status === 200){
           this.invoiceInf = response.data;
-
           sessionStorage.setItem('invoices', JSON.stringify(this.invoiceInf))
         }
       })
@@ -109,10 +108,6 @@ export default {
         this.info = 'Lipa';
       })
     },
-
-    refreshPage() {
-      this.$router.go(0);
-    }
   }
 }
 
@@ -162,7 +157,7 @@ export default {
 .invoices {
   display: flex;
   justify-content: space-between;
-  flex-direction: column;
+  flex-direction: column-reverse;
   border-radius: 5px;
   width: 100%;
   padding: 20px 30px;
@@ -258,9 +253,9 @@ export default {
 
 .panel.panel-default {
   border-top: 2px solid #d1d1d1;
-  border-bottom: 2px solid #d1d1d1;
   display: flex;
   padding:20px 0;
+  margin:15px 0;
 }
 
 .panel-collapse.collapse {

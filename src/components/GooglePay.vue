@@ -77,10 +77,9 @@ export default {
 
   created() {
     let a = JSON.parse(sessionStorage.getItem('invoices'));
-    this.amount = JSON.stringify(a[0].price);
-    console.log(a)
-    this.invoiceNumber = JSON.stringify(a[0]);
-    console.log(this.invoiceNumber)
+
+    this.amount = JSON.stringify(a[a.length-1].price);
+    this.invoiceNumber = JSON.stringify(a[a.length-1]);
   },
 
   methods: {
